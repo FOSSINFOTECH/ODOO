@@ -4,7 +4,7 @@
     'name': 'Sale Revision',
     'version': '1.1',
     'summary': 'Create Revision and Apply Revision',
-    'author': 'FOSS INFOTECH',
+    'author': 'FOSS INFOTECH PVT LTD',
     'category': 'Sale',
     'website': 'http://www.fossinfotech.com',
     'description': """ 

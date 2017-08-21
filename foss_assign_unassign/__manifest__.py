@@ -21,7 +21,7 @@ Step 3: It will shown in the Lead/Opportunity tree view more button. Now we can 
 
 Step 4: Now we can assign multiple followers to multiple of records using wizard.
     """,
-    'author': 'Foss Infotech Pvt Ltd',
+    'author': 'FOSS INFOTECH PVT LTD',
     'category': 'Tools',
     'website': 'https://www.fossinfotech.com/',
     'images': [],
