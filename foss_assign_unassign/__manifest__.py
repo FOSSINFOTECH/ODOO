@@ -29,6 +29,9 @@ Step 4: Now we can assign multiple followers to multiple of records using wizard
     'data': [
         'view/assign_followers_view.xml'
     ],
+    'images': [
+        'static/description/banner.png',
+    ],
     'demo': [],
     'qweb': [],
     'installable': True,

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="product_template_form_view1" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='sales']" position="after">
+                    <page string="Product Lines">
+                        <group>
+                            <field mode="tree" name="child_line" nolabel="1">
+                                <tree string="Product Details" editable="bottom">
+                                    <field name="product_id" options="{'no_create': True}" required="1"/>
+                                    <field name="product_qty" required="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group" position="after">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="update_product" string="Update"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-check"
+				                states="draft"
+                        />
+                    </div>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
+                    <field name="is_offer_product"/>
+                </xpath>                
+            </field>
+        </record>
+
+        <record id="account_invoice_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/field[@name='invoice_line_ids']/tree//field[@name='price_subtotal']" position="after">
+                    <field name="is_offer_product"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="stock_view_move_picking_inherit_tree" model="ir.ui.view">
+            <field name="name">stock.view.move.picking.tree.inherit</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="is_offer_product"/>
+                </field>
+            </field>
+        </record>
+   
+    </data>
+</odoo>

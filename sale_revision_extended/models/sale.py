@@ -1,28 +1,10 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
 import odoo.addons.decimal_precision as dp
-import time
-from datetime import datetime, date, timedelta
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -62,14 +44,13 @@ class SaleOrder(models.Model):
         return True
 
 
-
 class SaleRevision(models.Model):
     _name = 'sale.revision'
 
     name = fields.Char('Revision No.', size=32, readonly=True)
     order_id = fields.Many2one('sale.order', 'Order Reference')
     revision_line = fields.One2many('sale.revision.line', 'revision_id', 'Revision Lines')
-    state = fields.Selection('sale.order',related='order_id.state', readonly=True)
+    state = fields.Selection('sale.order', related='order_id.state', readonly=True)
 
     def apply_revisions(self):
         ''' Create order lines against revision lines '''
@@ -87,12 +68,9 @@ class SaleRevision(models.Model):
                 'state': 'draft',
                 'order_id': x.revision_id.order_id.id
             }
-            print vals, "---------------valssssssssss-----------"
             sale_line_obj.create(vals)
         self.env['sale.order'].write({'revision_no': revision_id.name})
         return True
-
-
 
 
 class SaleRevisionLine(models.Model):
@@ -100,17 +78,10 @@ class SaleRevisionLine(models.Model):
 
     revision_id = fields.Many2one('sale.revision', 'Revision Ref.', required=True, ondelete='cascade', readonly=True)
     name = fields.Text('Description', required=True, readonly=True)
-    # sequence = fields.integer('Sequence', readonly=True)
     product_id = fields.Many2one('product.product', 'Product', readonly=True)
-    price_unit = fields.Float('Unit Price', required=True, digits_compute= dp.get_precision('Product Price'), readonly=True)
-    # type = fields.selection([('make_to_stock', 'from stock'), ('make_to_order', 'on order')], 'Procurement Method', required=True, readonly=True)
+    price_unit = fields.Float('Unit Price', required=True, digits=dp.get_precision('Product Price'), readonly=True)
     tax_id = fields.Many2many('account.tax', 'sale_revision_tax', 'revision_line_id', 'tax_id', 'Taxes', readonly=True)
-    product_uom_qty = fields.Float('Quantity', digits_compute=dp.get_precision('Product UoS'), required=True, readonly=True)
-    # product_uom = fields.many2one('product.uom', 'Unit of Measure ', required=True, readonly=True)
-    # product_uos_qty = fields.float('Quantity (UoS)', digits_compute=dp.get_precision('Product UoS'), readonly=True)
-    # product_uos = fields.many2one('product.uom', 'Product UoS', readonly=True)
-    # discount = fields.float('Discount (%)', digits_compute=dp.get_precision('Discount'), readonly=True)
-    # company_id = fields.many2one('res.company', 'Company', readonly=True)
+    product_uom_qty = fields.Float('Quantity', digits=dp.get_precision('Product UoS'), required=True, readonly=True)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

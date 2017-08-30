@@ -21,7 +21,7 @@ class AssignFollowersSettings(models.Model):
         data_obj = self.env['ir.model.data']
         for template in self:
             src_obj = template.model_id.model
-            model_data_id = data_obj._get_id('foss_assign_unassign_followers', 'view_assign_followers')
+            model_data_id = data_obj._get_id('foss_assign_unassign', 'view_assign_followers')
             res_id = data_obj.browse(model_data_id).res_id
             button_name = _('Assign/Unassign Followers')
             vals['ref_ir_act_window'] = action_obj.create({
