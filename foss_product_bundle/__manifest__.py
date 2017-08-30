@@ -20,6 +20,9 @@
     ],
     'demo': [
     ],
+    'images': [
+        'static/description/banner.png',
+    ],
     'css': [],
     'installable': True,
     'auto_install': True,
