@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<odoo>
+<openerp>
     <data>
 
         <record model='ir.ui.view' id='assign_followers_settings_form'>
@@ -53,20 +53,12 @@
             <field name="arch" type="xml">
                 <form string="Assign/Unassign Followers" version="7.0">
                     <group>
-                        <field name="record_followers_ids" required="1">
-                            <tree string="Followers">
-                                <field name="name"/>
-                                <field name="phone"/>
-                                <field name="email"/>
-                            </tree>
-                        </field>
-
-                        <!--<field name="record_followers_ids" required="1" domain="[('customer', '=', False), ('supplier', '=', False)]"/>-->
+                        <field name="record_followers_ids" required="1" domain="[('customer', '=', False), ('supplier', '=', False)]"/>
                     </group>
                     <footer>
-                        <button name="followers_assign" string="Assign" type="object" class="oe_highlight"/>
+                        <button name="assign_followers" string="Assign" type="object" class="oe_highlight"/>
                         or
-                        <button name="followers_unassign" string="Unassign" type="object" class="oe_highlight"/>
+                        <button name="unassign_followers" string="Unassign" type="object" class="oe_highlight"/>
                         or
                         <button string="Cancel" class="oe_link" special="cancel"/>
                     </footer>
@@ -75,4 +67,4 @@
         </record>
 
     </data>
-</odoo>
+</openerp>

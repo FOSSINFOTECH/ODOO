@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<openerp>
     <data> 
-  
         <record id="sale_order_revision" model="ir.ui.view">
             <field name="name">sale.order.revision</field>
             <field name="model">sale.order</field>
@@ -13,14 +12,17 @@
                             <field name="revision_no" readonly="1"/>
                         </group>
                         <group>
-                            <button name="create_revisions" string="Create Revision" type="object" icon="fa-archive" states="draft,sent"/>
+                            <button name="create_revisions" string="Create Revision" type="object" icon="terp-emblem-important" states="draft,sent"/>
                         </group>
+                    </group>
+                    <group>
+                        <field name="covering_letter"/>
                     </group>
                 </xpath>
                 <notebook position="inside">
                     <page string="Revision Lines">
                         <field name="rev_line">
-                            <tree string="Revisions" create="false" delete="false">
+                            <tree string="Revisions" create="false">
                                 <field name="name"/>                                   
                             </tree>
                             <form string="Revisions" version="7.0" readonly="1">
@@ -31,18 +33,19 @@
                                             <field name="state" invisible="1"/> 
                                         </group>
                                         <group>
-                                            <button name="apply_revisions" string="Apply Revision" type="object" icon="fa-archive" attrs="{'invisible': [('state', 'not in', ('draft','sent'))]}"/> 
+                                            <button name="apply_revisions" string="Apply Revision" type="object" icon="terp-emblem-important" attrs="{'invisible': [('state', 'not in', ('draft','sent'))]}"/> 
                                         </group>
                                     </group>
                                     <notebook>
                                         <page string="Revision Lines">
                                             <field name="revision_line">
-                                                <tree string="Revision Lines" create="false" delete="false" editable="bottom">
+                                                <tree string="Revision Lines" create="false" editable="bottom">
                                                     <field name="product_id"/>
                                                     <field name="name"/>
                                                     <field name="product_uom_qty"/>
+                                                    <field name="product_uom"/>
                                                     <field name="tax_id"/>
-                                                    <field name="price_unit"/>          
+                                                    <field name="price_unit"/>                                                   
                                                 </tree>
                                             </field>
                                         </page>
@@ -54,6 +57,5 @@
               </notebook>
             </field>
         </record>
-
     </data>
-</odoo>
+</openerp>

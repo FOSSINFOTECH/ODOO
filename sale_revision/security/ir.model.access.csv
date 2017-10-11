@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_revision_manager,sale.revision,model_sale_revision,base.group_sale_manager,1,1,1,1
+access_sale_revision_user,sale.revision,model_sale_revision,base.group_sale_salesman,1,1,1,0
+access_sale_revision_line_manager,sale.revision.line,model_sale_revision_line,base.group_sale_manager,1,1,1,1
+access_sale_revision_line_user,sale.revision.line,model_sale_revision_line,base.group_sale_salesman,1,1,1,0
