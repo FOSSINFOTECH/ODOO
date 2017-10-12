@@ -10,6 +10,7 @@ Odoo assign followers module. By using this module, we can assign bulk number of
 to a particular record or N number of records. We can assign multiple followers to multiple of records using wizard.
 
 Assign followers to a Record of any Model:
+
 Step 1:  After installing the module go to Settings > Technical > Action > Assign followers
 
 Step 2: Create a Model for assigning Followers to records with help of Name and choosing Model in the form. Save it and click “Add Action” button.
