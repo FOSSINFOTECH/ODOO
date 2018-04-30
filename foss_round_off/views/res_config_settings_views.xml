@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="round_off_settings_view_form" model="ir.ui.view">
+            <field name="name">round_off_settings_view_form</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="85"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]/div[@data-key='account_invoicing']" position="inside">
+                    <h2>Round Off</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box" title="test">
+                            <div class="o_setting_left_pane">
+                                <field name="round_off"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label string="Round Off" for="round_off"/>
+                                <div class="content-group" attrs="{'invisible': ['|', ('round_off', '=',  False)]}">
+                                    <div class="mt16">
+                                        <label string="Round Off Account" class="o_light_label"/>
+                                        <field name="round_off_account" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

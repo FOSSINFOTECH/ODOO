@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record model="ir.ui.view" id="tentative_price_form_view">
+            <field name="name">tentative.price.form.view</field>
+            <field name="model">tentative.price</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="confirm" string="Confirm" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('confirmed'))]}" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>Tentative Price List <field name="number" class="oe_inline" readonly="1"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" attrs="{'readonly': [('state', 'in', ('confirmed'))]}"/>
+                                <field name="reference" attrs="{'readonly': [('state', 'in', ('confirmed'))]}"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="TPL List">
+                                <field mode="tree" name="tentative_price_ids" attrs="{'readonly': [('state', 'in', ('confirmed'))]}">
+                                    <tree string="tree1" editable="top" > 
+                                        <field name="product_id" domain="[('is_parent','=', True)]"/>
+                                        <field name="quantity" />
+                                        <field name="product_uom"/>
+                                        <field name="rate_unit"/>
+                                        <field name="tpl_amt"/>
+                                        <field name="purchased_amt"/>
+                                        <field name="remaining_tpl_amt"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tentative_price_tree_view">
+            <field name="name">tentative.price.tree.view</field>
+            <field name="model">tentative.price</field>
+            <field name="arch" type="xml">
+                <tree string="Tentative Price List">
+                    <field name="number"/>
+                    <field name="name"/>
+                    <field name="reference"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="tentative_price_action_all" model="ir.actions.act_window">
+            <field name="name">Tentative Price Lists</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tentative.price</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="tentative_price_tree_view"/>
+        </record>
+
+        <menuitem name="Tentative Price List" 
+            id="menu_tentative_price"
+            parent="purchase.menu_procurement_management"
+            action="tentative_price_action_all"
+            sequence="16"/>
+
+        <record id="product_template_form_views" model="ir.ui.view">
+            <field name="name">product.template.common.form.views</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_title']" position="inside">
+                    <div>
+                        <field name="is_parent" attrs="{'invisible': [('parent_id', '=', True)]}"/>
+                        <label for="is_parent" attrs="{'invisible': [('parent_id', '=', True)]}"/>
+                    </div>
+                    <div>
+                        <label for="parent_id" attrs="{'invisible': [('is_parent', '=', True)]}"/>
+                        <field name="parent_id" attrs="{'required': [('is_parent', '=', False)], 'invisible': [('is_parent', '=', True)]}"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase_order_form_views" model="ir.ui.view">
+            <field name="name">purchase.order.form.views</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="tpl_pricelist_id" options='{"no_open": True, "no_create": True, "no_create_edit": True}' domain="[('state','!=', 'draft')]" string="Tentative Price List Name"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_form_view" model="ir.ui.view">
+            <field name="name">purchase.order.line.form.views</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='price_unit']" position="before">
+                    <field name="remain_tpl_amt"/>
+                </xpath>
+            </field>
+        </record>
+</odoo>
