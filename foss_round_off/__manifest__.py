@@ -7,9 +7,9 @@
     'summary': 'Rounding of Invoice Amount',
     'description': 'This module is to round the invoice (decimal amount) to the nearest value for Customer Invoice and Vendor Bills',
     'category': 'Accounting',
-    'author': 'Foss Infotech Private Limited',
+    'author': 'FOSS INFOTECH PVT LTD',
     'website': "www.fossinfotech.com",
-    'company': 'Foss Infotech Private Limited',
+    'company': 'FOSS INFOTECH PVT LTD',
     'depends': ['base', 'account'],
     'data': [
         'views/round_off_view.xml',

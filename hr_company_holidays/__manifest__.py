@@ -3,7 +3,7 @@
 {
     'name': 'Company Holiday Management',
     'version': '0.1',
-    'author': 'FOSS INFOTECH',
+    'author': 'FOSS INFOTECH PVT LTD',
     'sequence': 110,
     'category': 'Human Resources',
     'website': 'http://www.fossinfotech.com',

@@ -5,6 +5,7 @@ import odoo.addons.decimal_precision as dp
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
@@ -16,6 +17,7 @@ class SaleOrder(models.Model):
         ('name_uniq', 'unique(revision_no, company_id)', 'Revision Number must be unique!'),
     ]
 
+    @api.multi
     def create_revisions(self):
         rev_obj = self.env['sale.revision']
         rev_line_obj = self.env['sale.revision.line']
@@ -50,13 +52,16 @@ class SaleRevision(models.Model):
     revision_line = fields.One2many('sale.revision.line', 'revision_id', 'Revision Lines')
     state = fields.Selection('sale.order', related='order_id.state', readonly=True)
 
+    @api.multi
     def apply_revisions(self):
         ''' Create order lines against revision lines '''
         revision_id = self[0]
         sale_line_obj = self.env['sale.order.line']
         for l in revision_id.order_id.order_line:
+            print(revision_id.order_id.order_line,'/////////////////////////////////////////////////')
             l.unlink()
         for x in revision_id.revision_line:
+            print(revision_id.revision_line,'***********************************************')
             vals = {
                 'name': x.name,
                 'product_id': x.product_id.id,
@@ -67,12 +72,16 @@ class SaleRevision(models.Model):
                 'order_id': x.revision_id.order_id.id,
             }
             sale_line_obj.create(vals)
-            self._cr.commit()
         self.env['sale.order'].write({'revision_no': revision_id.name})
+        # self.env.cr.commit()
+        # self._cr.commit()
+        print('++++++++++++++++++++++++++++++++++++++++++++++')
+        # return True
         return  {
                 'type': 'ir.actions.client',
                 'tag' : 'reload'
                }
+            
 
 
 class SaleRevisionLine(models.Model):

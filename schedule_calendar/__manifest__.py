@@ -21,7 +21,7 @@
 {
     'name': '''Company's Meeting Schedule Details''',
     'version': '0.1',
-    'author': 'FOSS INFOTECH',
+    'author': 'FOSS INFOTECH PVT LTD',
     'sequence': 110,
     'category': 'Generic',
     'website': 'http://www.fossinfotech.com',
