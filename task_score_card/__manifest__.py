@@ -32,6 +32,10 @@
     'data': [
         "views/task_score_card_view.xml",
         ],
+    'images': [
+        'static/description/index.html',
+        'static/description/icon.png',
+    ],
     'installable': True,
     'active': False,
 
