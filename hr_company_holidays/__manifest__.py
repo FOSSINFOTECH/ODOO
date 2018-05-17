@@ -15,11 +15,7 @@
         'security/ir.model.access.csv',
         'views/hr_company_holidays_view.xml'
     ],
-    'images': [
-        'static/description/banner.png',
-        'static/description/index.html',
-        'static/description/icon.png',
-    ],
+
     'installable': True,
     'application': True,
 }

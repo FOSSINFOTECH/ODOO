@@ -15,10 +15,6 @@
         'views/tentative_price_view.xml',
         'views/tentative_price_sequence.xml',
             ],
-    'images': [
-        'static/description/index.html',
-        'static/description/icon.png',
-    ],
     'installable': True,
     'active': False,
 

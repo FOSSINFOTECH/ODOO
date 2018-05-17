@@ -42,10 +42,23 @@ class Task(models.Model):
     points = fields.Integer(compute='get_points', string='Points')
     date_assign = fields.Date(string='Assigning Date', index=True, copy=False, readonly=True)
 
+    @api.model
+    def create(self, vals):
+        res = super(Task, self).create(vals)
+        if not vals.get('date_assign'):
+            raise UserError(("Kindly fill out all the fields."))
+        if not vals.get('date_deadline'):
+            raise UserError(("kindly fill out all the fields."))
+        return res
+
     @api.multi
     def write(self, vals):
         res = super(Task, self).write(vals)
         for dt in self:
+            if not dt.date_assign:
+                raise UserError(("Kindly give the Assigning date for the task."))
+            if not dt.date_deadline:
+                raise UserError(("Kindly give the deadline for the task"))
             if dt.date_assign > dt.date_deadline:
                 raise UserError(("Date Deadline should not be less than the Assigned Date."))
         return res

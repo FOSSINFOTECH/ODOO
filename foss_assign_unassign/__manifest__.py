@@ -33,8 +33,6 @@ Step 4: Now we can assign multiple followers to multiple records using the wizar
     ],
     'images': [
         'static/description/banner.png',
-        'static/description/index.html',
-        'static/description/icon.png',
     ],
     'demo': [],
     'qweb': [],
