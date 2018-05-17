@@ -15,7 +15,10 @@
         'views/round_off_view.xml',
         'views/res_config_settings_views.xml',
     ],
-    'images': [],
+    'images': [ 
+        'static/description/icon.png',
+        'static/description/index.html'
+    ],
     'installable': True,
     'auto_install': False,
     'application': False,

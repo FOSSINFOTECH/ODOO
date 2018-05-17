@@ -21,7 +21,9 @@
     'demo': [
     ],
     'images': [
-        'static/description/banner.png',
+        'static/description/Banner.png',
+        'static/description/index.html',
+        'static/description/icon.png'
     ],
     'css': [],
     'installable': True,
