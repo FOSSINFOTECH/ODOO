@@ -20,8 +20,8 @@
         "wizard/payslip_mass_mailing.xml",
     ],
     'images': [
-        'static/description/icon.png',
         'static/description/banner.png',
+        'static/description/icon.png',
         'static/description/index.html',
     ],
     'installable': True,

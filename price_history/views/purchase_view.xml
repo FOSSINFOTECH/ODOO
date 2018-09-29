@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="purchase_order_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <button name="button_purchase_revision" string="Price History" states="draft,sent,to approve" type="object" class="oe_highlight"/>
+                </field>
+                <xpath expr="//page[1]" position="after">
+                    <page string="Revision History">
+                        <field name="po_revision_ids" readonly="1">
+                            <tree string="Revision History">
+                                <field name="product_id"/>
+                                <field name="product_uom"/>
+                                <field name="product_qty"/>
+                                <field name="unit_price"/>
+                                <field name="po_id" invisible="1"/>
+                                <field name="po_requisition_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

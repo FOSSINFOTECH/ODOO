@@ -41,8 +41,8 @@
     ],
     'images': [
         'static/src/banner.png',
-        'static/src/index.html',
         'static/src/icon.png',
+        'static/src/index.html',
     ],
     'installable': True,
     'application': True,

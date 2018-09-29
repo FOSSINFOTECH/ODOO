@@ -18,8 +18,8 @@
         'security/ir.model.access.csv',
     ],
     'images': [
-        'static/description/icon.png',
         'static/description/images/banner.png',
+        'static/description/icon.png',
         'static/description/index.html',
     ],
     'installable': True,

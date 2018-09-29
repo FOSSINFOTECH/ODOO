@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_price_history_report,Price.history.report,model_price_history_report,purchase.group_purchase_manager,1,0,0,0
+access_price_history_report_user,Price.history.report.user,model_price_history_report,purchase.group_purchase_user,1,0,0,0
+access_purchase_revision_line,purchase.revision.line user,model_purchase_revision_line,purchase.group_purchase_user,1,1,1,1
+access_purchase_revision_line_manager,purchase.revision.line,model_purchase_revision_line,purchase.group_purchase_manager,1,1,1,1

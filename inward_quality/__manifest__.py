@@ -31,8 +31,8 @@
         'security/ir.model.access.csv',
     ],
     'images': [
-        'static/description/icon.jpg',
         'static/description/banner.png',
+        'static/description/icon.jpg',
         'static/description/index.html',
     ],
 
