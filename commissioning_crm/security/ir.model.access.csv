@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_commission_manager,crm_commission_manager,model_crm_commission,group_crm_commissioning_manager,1,1,1,1
+access_crm_commission_user,crm_commission_user,model_crm_commission,group_crm_commissioning_user,1,1,1,0
+access_stock_user_rights,stock_user_rights,model_crm_commission,stock.group_stock_user,1,0,1,0

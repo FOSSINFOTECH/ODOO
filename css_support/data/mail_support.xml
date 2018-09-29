@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_template_edi_support_service_ticket" model="mail.template">
+                    <field name="name">Service Ticket</field>
+                    <field name="email_from">${ctx['user_company_id.email']}</field>
+                    <field name="subject">A Task has been completed</field>
+                    <field name="email_to">${ctx['email_to']}</field>
+                    <field name="model_id" ref="css_support.model_crm_claim"/>
+                    <field name="auto_delete" eval="True"/>
+                    <field name="body_html"><![CDATA[
+        <p>Dear ${ctx['name']},</p>
+        <br/>
+        <table cellspacing="\1\" cellpadding="\4\" border="\1\">
+            <tbody>
+                <tr>
+                    <th>Reference</th>
+                    <th>Customer</th>
+                    <th>Product to be serviced</th>
+                    <th>Service to be completed by</th>
+                </tr>
+                  %for object in ctx['today_list']
+                  <tr>
+                    <td>${object.name}</td>
+                    <td>${object.partner_id.name}</td>
+                    <td>${object.product_id.name}</td>                
+                    <td>${object.user_id.name}</td>                
+                  </tr>
+                  % endfor
+            </tbody>
+        </table>
+        <p>This is an auto-generated mail, Please do not reply.</p>
+        <p>Thank you,</p>
+        ]]>
+                    </field>
+        </record>
+    </data>
+</odoo> 

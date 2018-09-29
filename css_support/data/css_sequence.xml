@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_name_occ" model="ir.sequence">
+            <field name="name">Service Ticket</field>
+            <field name="code">css.order</field>     <!--  class name -->
+        	<field name="active">True</field>
+        	<field name="prefix">CSS000</field>
+        	<field name="number_increment">1</field>
+        	<field name="number_text">1</field>
+        	<field name="padding">3</field>
+        	<field name="implementation">standard</field>
+        </record>
+        <record id="ref_sequence" model="ir.sequence">
+            <field name="name">Product Reference</field>
+            <field name="code">css.order.line</field>     <!--  class name -->
+            <field name="active">True</field>
+            <field name="prefix">REF000</field>
+            <field name="number_increment">1</field>
+            <field name="number_text">1</field>
+            <field name="padding">3</field>
+            <field name="implementation">standard</field>
+        </record>
+        <record id="service_ticket_seq" model="ir.sequence">
+            <field name="name">Service Ticket Number Sequence</field>
+            <field name="code">crm.claim</field>     <!--  class name -->
+            <field name="active">True</field>
+            <field name="prefix">ST000</field>
+            <field name="number_increment">1</field>
+            <field name="number_text">1</field>
+            <field name="padding">3</field>
+            <field name="implementation">standard</field>
+        </record>
+    </data>
+</odoo>

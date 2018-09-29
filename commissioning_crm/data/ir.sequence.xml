@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<odoo>
+		<data noupdate="1">
+			<record id="seq_crm_commission" model="ir.sequence">
+		            <field name="name">Commissioning</field>
+		            <field name="code">crm.commission</field>
+		            <field name="prefix">COM</field>
+		            <field name="padding">6</field>
+		            <field name="company_id" eval="False"/>
+			</record>
+		</data>
+	</odoo>
+

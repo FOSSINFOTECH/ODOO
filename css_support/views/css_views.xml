@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="css_form_view">
+            <field name="name">css.form.view</field>
+            <field name="model">css.order</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" class="oe_right" statusbar="draft,open,done"/>
+                    </header>
+                        <sheet>
+                            <div class="oe_title">
+                                <h1>
+                                    <field name="name" readonly="1"/>
+                                </h1>
+                            </div>
+                        <group>
+                            <group>
+                                <field name="search_no"  attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                <field name="partner_id" required="1"  attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Machine Lines">
+                                <field name = "css_line" mode="tree" attrs="{'readonly': [('state', '=', 'done')]}">
+                                    <tree string="css_form" editable="bottom">
+                                        <button 
+                                            name="create_ticket"
+                                            type="object"
+                                            string="Create Service Ticket"
+                                            icon="fa-share fa-lg"
+                                            style="color:#3D8F23"
+                                            attrs="{'invisible': [('claim_id', '!=', False)]}" 
+                                            />
+                                        <button 
+                                            name="view_ticket"
+                                            type="object"
+                                            string="View Service Ticket"
+                                            icon="fa-reply fa-lg"
+                                            style="color:#0000FF"
+                                            attrs="{'invisible': [('claim_id', '=', False)]}"
+                                            />
+                                        <field name="name" readonly="1"/>
+                                        <field name="product_id"/>
+                                        <field name="lot_id"/>
+                                        <field name="partner_id"/>
+                                        <field name="claim_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="css_support_ref">
+        <field name="name">css.support.ref</field>
+        <field name="model">css.order</field>
+        <field name="arch" type="xml">
+            <tree string='state'>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_css_toll_tree" model="ir.actions.act_window">
+        <field name="name">CSS</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">css.order</field>
+        <field name="view_model">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="css_support_ref"/>
+    </record>
+
+
+    <menuitem 
+        name="CSS Toll Free"
+        id="css_toll_free"
+        sequence="10"
+        />
+
+    <menuitem 
+        name="CSS Toll Free"
+        id="submenu_css"
+        parent="css_toll_free"
+        sequence="15"/>
+     <menuitem 
+        name="Toll Free Calls"
+        id="submenu_css_child"
+        parent="submenu_css"
+        action="action_css_toll_tree"
+        sequence="20"/> 
+
+    <record model="ir.ui.view" id="crm_case_claims_form_view">
+        <field name="name">css.case.claims.form.view</field>
+        <field name="model">crm.claim</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" class="oe_right" statusbar="draft,inprogress,done,cancel"/>
+                    <button name="action_confirm" string="Confirm" type="object" states="draft" class="oe_highlight"/>
+                    <button name="cancel_ticket" string="Cancel Ticket" type="object" states="draft,inprogress" class="oe_highlight"/>
+                    <button name="close_ticket" string="Close Ticket" type="object" states="inprogress" class="oe_highlight"/>
+                    <button name="reset" string="Set to draft" type="object" states="cancel" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <h1>
+                        <button name="get_visits" string="Visits" type="object" class="oe_stat_button oe_right" context="{'create_visit': False}" icon="fa-bus" states="inprogress,done,cancel"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="partner_id" required="1"  readonly="1"/>
+                            <field name="product_id" readonly="1"/>
+                            <field name="lot_id"  readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="history_line_id"  readonly="1"/>
+                            <field name="css_order_id"  readonly="1"/>
+                            <field name="date" readonly="1" />
+                            <field name="user_id" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}" groups="css_support.group_css_manager"/>
+                        </group>
+                    </group>
+                </sheet>
+                 <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="css_crm_claim_ref">
+        <field name="name">css.crm.claim.ref</field>
+        <field name="model">crm.claim</field>
+        <field name="arch" type="xml">
+            <tree string='Service Ticket'>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="history_line_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_service" model="ir.actions.act_window">
+        <field name="name">Service Tickets</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">crm.claim</field>
+        <field name="view_model">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="context">{'create': 0}</field>
+        <field name="view_id" ref="css_crm_claim_ref"/>
+    </record>
+
+    <menuitem name="Service Ticket"
+                id="claim_css"
+                parent="css_toll_free"
+                action="action_service"
+                sequence="30"/> 
+
+    <record id="view_stock_production_form_view" model="ir.ui.view">
+            <field name="name">view.stock.production.form.view</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_stock_move_operations"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="before">
+                    <field name="partner_id"/>
+                </field>
+            </field>
+    </record>
+
+    <record id="view_task_form_inherit" model="ir.ui.view">
+            <field name="name">view.task.form.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="service_id" readonly="1" attrs="{'invisible': [('service_id', '=', False)],'readonly':[('service_id','=',True)]}"/>
+                    <field name="partner_id" readonly="1" attrs="{'invisible': [('service_id', '=', False)],'readonly':[('service_id','=',True)]}"/>
+                    <field name="product_id" readonly="1" attrs="{'invisible': [('service_id', '=', False)],'readonly':[('service_id','=',True)]}"/>
+                    <field name="pro_refer" readonly="1" attrs="{'invisible': [('service_id', '=', False)],'readonly':[('service_id','=',True)]}"/>
+                </field>
+                <field name="name" position="attributes">
+                    <attribute name="attrs">{'readonly': [('service_id', '=', True)]}</attribute>
+                </field>
+                <field name="user_id" position="attributes">
+                    <attribute name="attrs">{'readonly': [('service_id', '=', True)]}</attribute>
+                </field>
+                <field name="project_id" position="attributes">
+                    <attribute name="attrs">{'readonly': [('service_id', '=', True)]}</attribute>
+                </field>
+            </field>
+        </record>
+        <record id="view_project_form_inherit_sup" model="ir.ui.view">
+        <field name="name">view.project.form.inherit.sup</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="service_id" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_task_type_form_inherit_commission" model="ir.ui.view">
+        <field name="name">project.task.type.form.inherit.commission</field>
+        <field name="model">project.task.type</field>
+        <field name="inherit_id" ref="project.task_type_edit"/>
+        <field name="arch" type="xml">
+            <field name="fold" position="before">
+                <field name="state"/>
+            </field>
+        </field>
+    </record>
+
+    </data>
+</odoo>

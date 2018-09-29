@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="crm_form_view">
+            <field name="name">crm_commissioning_form_view</field>
+            <field name="model">crm.commission</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" class="oe_right" states="unassigned,inprogress,done,cancel,failed"/>
+                        <button name="button_confirm" string="Confirm" type="object" states="unassigned" class="oe_highlight"/>
+                        <button name="button_cancel" string="Cancel" type="object" states="unassigned" class="oe_highlight"/>
+                        <button name="button_complete" string="Complete" type="object" states="inprogress" class="oe_highlight"/>
+                        <button name="%(action_view_commissioning_failure)d" string="Failed" type="action" states="inprogress" class="oe_highlight"/>
+                        <button name="button_reset" string="Set to draft" type="object" states="cancel,failed" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <h1>
+                            <button name="get_visits" string="Visits" type="object" class="oe_stat_button oe_right" context="{'create_visit': False}" icon="fa-bus" states="inprogress,done,failed"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <!-- <field name="name" required="1" readonly="1"/> -->
+                                <field name="partner_id" required="1" attrs="{'readonly': ['|',('state', 'in', ('done','inprogress','cancel')),('is_direct', '=', True)]}"/>
+                                <!-- <field name="site_address"/> -->
+                                <field name="product_id" required="1" attrs="{'readonly': ['|',('state', 'in', ('done','inprogress','cancel')),('is_direct', '=', True)]}" domain="[('commission_ok', '=', True)]"/>
+                                <field name="date" attrs="{'readonly': [('state', 'in', ('done','inprogress','cancel'))]}"/>
+                            </group>
+                            <group>
+                                <field name="mobile" attrs="{'readonly': [('state', 'in', ('done','inprogress','cancel'))]}"/>
+                                <field name="lot_id" attrs="{'readonly': [('state', 'in', ('done','inprogress','cancel'))]}"/>
+                                <field 
+                                    name="user_id" attrs="{'readonly': [('state', 'in', ('done','inprogress','cancel'))]}"/>
+                                <field name="commission_id" invisible="1" attrs="{'readonly': [('state', 'in', ('done','inprogress','cancel'))]}"/>
+                                <field name="sale_id" attrs="{'readonly': ['|',('is_direct', '=', True),('state', 'in', ('done','inprogress','cancel'))]}"/>
+                                <field name="picking_id" attrs="{'readonly': ['|',('is_direct', '=', True),('state', 'in', ('done','inprogress','cancel'))]}"/>
+                                <field name="is_manager" invisible="1" readonly="1"/>
+                                <field name="is_direct" invisible="1" readonly="1"/>
+                                <field name="failed_reason" attrs="{'invisible':[('failed_reason','=',False)]}" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="crm_commission_ref">
+            <field name="name">crm.commission.tree</field>
+            <field name="model">crm.commission</field>
+            <field name="arch" type="xml">
+                <tree string='state'>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="product_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_crm_com" model="ir.actions.act_window">
+            <field name="name">Commissioning</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">crm.commission</field>
+            <field name="view_model">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="crm_commission_ref"/>
+        </record>
+
+
+        <menuitem name="Commissioning"
+                id="menu_crm_com"
+                sequence="25"/>
+
+        <menuitem name="Commissioning"
+                id="submenu_crm_commission"
+                parent="menu_crm_com"
+                action="action_crm_com"
+                sequence="30"/>
+
+    <record id="view_product_product_form_view" model="ir.ui.view">
+        <field name="name">product.product.form.simplified</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[2]/div" positon="after">
+                <div>
+                    <field name="commission_ok"/>
+                    <label for="commission_ok"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_task_form_inherit" model="ir.ui.view">
+        <field name="name">project.task.form.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="commission_id" readonly="1" invisible="1"/>
+                <field name="partner_id" readonly="1"  attrs="{'invisible': [('commission_id', '=', False)]}"/>
+                <field name="product_id" readonly="1" attrs="{'invisible': [('commission_id', '=', False)]}"/>
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="attrs">{'readonly': [('commission_id', '=', True)]}</attribute>
+            </field>
+            <field name="user_id" position="attributes">
+                <attribute name="attrs">{'readonly': [('commission_id', '=', True)]}</attribute>
+            </field>
+            <field name="project_id" position="attributes">
+                <attribute name="attrs">{'readonly': [('commission_id', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="view_project_form_inherit_com" model="ir.ui.view">
+        <field name="name">project.project.form.inherit.com</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="commission_id" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_task_type_form_inherit_commission" model="ir.ui.view">
+        <field name="name">project.task.type.form.inherit.commission</field>
+        <field name="model">project.task.type</field>
+        <field name="inherit_id" ref="project.task_type_edit"/>
+        <field name="arch" type="xml">
+            <field name="fold" position="before">
+                <field name="state"/>
+            </field>
+        </field>
+    </record>
+    </data>
+</odoo> 

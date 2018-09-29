@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_css_order_user,css_order_user,model_css_order,group_css_user,1,1,1,0
+access_css_order_line_team,css_order_line_team,model_css_order_line,group_css_user,1,1,1,0
+access_crm_claim_team,crm_claim_team,model_crm_claim,group_css_user,1,1,1,0
+access_css_order_manager,css_order_manager,model_css_order,group_css_manager,1,1,1,0
+access_css_order_line,css_order_line_manager,model_css_order_line,group_css_manager,1,1,1,0
+access_crm_claim,crm_claim_manager,model_crm_claim,group_css_manager,1,1,1,0
+access_crm_claim_service_eng,crm_claim_service_enginner,model_crm_claim,group_service_engineer,1,1,0,0
