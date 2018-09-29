@@ -42,7 +42,7 @@
     'images': [
         'static/src/banner.png',
         'static/src/index.html',
-        'static/src/icon.png'
+        'static/src/icon.png',
     ],
     'installable': True,
     'application': True,

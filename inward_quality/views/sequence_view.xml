@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sequences for Inward QC -->
+        <record id="seq_quality_check_receipts" model="ir.sequence">
+            <field name="name">Quality Check</field>
+            <field name="code">stock.quality.check.receipts</field>
+            <field name="prefix">IN-QC</field>
+            <field name="padding">5</field>
+        </record>
+
+    </data>
+</odoo>

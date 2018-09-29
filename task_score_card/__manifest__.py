@@ -34,7 +34,8 @@
         ],
     'images': [
         'static/description/index.html',
-        'static/description/icon.png'
+        'static/description/icon.png',
+        'static/description/banner.png',
     ],
     'installable': True,
     'active': False,

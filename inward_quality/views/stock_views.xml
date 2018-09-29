@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="view_picking_quality_inherit">
+			<field name="name">view_picking_quality_inherit</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form"/>
+			<field name="arch" type="xml">
+                <xpath expr="//field[@name='move_lines']/tree/field[@name='product_uom']" position="after">
+                    <field name="pass_qty" readonly="1" attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="fail_qty" readonly="1" attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="fail_reason" readonly="1" attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="check_id" invisible="1"/>
+                    <button name="%(inward_quality.act_quality_wizard)d" type="action" string="Quality Check"  class="oe_highlight" attrs="{'invisible': [('state', 'in', ('done','cancel'))],'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
+                    <button name="print_quality_check_report"
+                        type="object" 
+                        class="oe_highlight oe_right" 
+                        icon="fa fa-share"
+                        string="Print QC" 
+                        attrs="{'invisible': ['|',('state','!=', 'done'),('parent.picking_type_code', '!=', 'incoming')]}"
+                    />
+                </xpath>
+	        </field>
+		</record>  
+
+	</data>
+</odoo>

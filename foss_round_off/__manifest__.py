@@ -17,6 +17,7 @@
     ],
     'images': [ 
         'static/description/icon.png',
+        'static/description/banner.png',
         'static/description/index.html'
     ],
     'installable': True,

@@ -1,0 +1,95 @@
+.oe_kanban_color_quality_state_1 {
+  background-color: #07AD20;
+  text-align: center;
+  max-width: 50%;
+  color: #FFFFFF;
+}
+
+.oe_kanban_color_quality_state_2 {
+  background-color: #FE0516;
+  text-align: center;
+  max-width: 50%;
+  color: #FFFFFF;
+}
+.oe_kanban_color_quality_state_3 {
+  background-color: #72F7FB;
+  text-align: center;
+  max-width: 50%;
+  color: #101000;
+}
+
+.oe_kanban_color_quality_state_4 {
+  background-color: #B505C5;
+  text-align: center;
+  max-width: 50%;
+  color: #FFFFFF;
+}
+
+.oe_kanban_color_quality_state_5 {
+  background-color: #061CE9;
+  text-align: center;
+  max-width: 50%;
+  color: #FFFFFF;
+}
+
+.oe_kanban_color_quality_state_6 {
+  background-color: #a39b9b;
+  text-align: center;
+  max-width: 50%;
+  color: #030303;
+}
+
+.oe_kanban_color_quality_state_7 {
+  background-color: #e0ebeb;
+  text-align: center;
+  max-width: 50%;
+  color: #030303;
+}
+
+.oe_color_quality_state_1 {
+  background-color: #07AD20;
+  text-align: center;
+  max-width: 100%;
+  color: #FFFFFF;
+}
+
+.oe_color_quality_state_2 {
+  background-color: #FE0516;
+  text-align: center;
+  max-width: 100%;
+  color: #FFFFFF;
+}
+.oe_color_quality_state_3 {
+  background-color: #F6F93E;
+  text-align: center;
+  max-width: 100%;
+  color: #101000;
+}
+
+.oe_color_quality_state_4 {
+  background-color: #B505C5;
+  text-align: center;
+  max-width: 100%;
+  color: #FFFFFF;
+}
+
+.oe_color_quality_state_5 {
+  background-color: #061CE9;
+  text-align: center;
+  max-width: 100%;
+  color: #FFFFFF;
+}
+
+.oe_color_quality_state_6 {
+  background-color: #C5BFBF;
+  text-align: center;
+  max-width: 100%;
+  color: #030303;
+}
+
+.oe_color_quality_state_7 {
+  background-color: #e0ebeb;
+  text-align: center;
+  max-width: 100%;
+  color: #030303;
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Escalation mail template for delayed tasks  -->
+        <record id="email_template_escalation_project_task_mail" model="mail.template">
+            <field name="name">Escalation Mail</field>
+            <field name="email_from">${user.company_id.email}</field>
+            <field name="subject">${ctx['email_subject']} </field>
+            <field name="email_to">${ctx['email_to_user']}</field>
+            <field name="model_id" ref="escalation_mail.model_project_task"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="user_signature" eval="False"/>
+            <field name="body_html"><![CDATA[
+
+            <p>Dear ${ctx['manager']},</p>
+            <table cellspacing=\1\ border=\1\ cellpadding=\4\>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Task Name</th>
+                    <th>Assigned To</th>
+                    <th>Task Assigned Date</th>
+                    <th>Deadline</th>
+                </tr>
+                %for object in ctx['closed_list']
+                <tr>
+                    <td>${object.pro_name}</td>
+                    <td>${object.task_name}</td>
+                    <td>${object.usr_name}</td>
+                    <td>${object.date_ass}</td>
+                    <td>${object.date_dead}</td>
+                </tr>
+                  % endfor
+            </table>
+       
+            ]]></field>
+        </record>
+
+    </data>
+</odoo>
