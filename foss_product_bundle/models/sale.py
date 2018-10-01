@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
+
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
-class product_product(models.Model):
+class Product(models.Model):
     _inherit = 'product.product'
 
     seq = fields.Integer(string='Sequence')
@@ -18,7 +19,7 @@ class product_product(models.Model):
             vals.update({
                 'seq': 1
             })
-        return super(product_product, self).write(vals)
+        return super(Product, self).write(vals)
 
 
 class child_product_line(models.Model):
@@ -56,7 +57,7 @@ class SaleOrder(models.Model):
         return True
 
 
-class sale_order_line(models.Model):
+class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     is_offer_product = fields.Boolean(string='Is Offer Product', readonly=True)
@@ -75,24 +76,24 @@ class sale_order_line(models.Model):
                     vals['sequence'] = res[0] + 10
             else:
                 vals['sequence'] = seq
-        return super(sale_order_line, self).create(vals)
+        return super(SaleOrderLine, self).create(vals)
 
     @api.multi
     def _prepare_invoice_line(self, qty):
         res = {}
-        res = super(sale_order_line, self)._prepare_invoice_line(qty)
+        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
         if res:
             res.update({'is_offer_product': self.is_offer_product})
         return res
 
 
-class stock_move(models.Model):
+class StockMove(models.Model):
     _inherit = 'stock.move'
 
     is_offer_product = fields.Boolean(string='Is Offer Product', readonly=True)
 
 
-class account_invoice_line(models.Model):
+class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
     is_offer_product = fields.Boolean(string='Is Offer Product', readonly=True)

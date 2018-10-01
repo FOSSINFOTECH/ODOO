@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ticket_type_user,ticket_type_user,model_ticket_type,project.group_project_user,1,0,0,0
+access_ticket_type_manager,ticket_type_manager,model_ticket_type,project.group_project_manager,1,1,1,1
+access_ticket_tag_user,ticket_tag_user,model_ticket_tag,project.group_project_user,1,0,0,0
+access_ticket_tag_manager,ticket_tag_manager,model_ticket_tag,project.group_project_manager,1,1,1,1
+access_suuport_ticket_user,support_ticket_user,model_support_ticket,project.group_project_user,1,1,1,0
+access_suuport_ticket_manager,support_ticket_manager,model_support_ticket,project.group_project_manager,1,1,1,1
+access_project_phase_user,project_phase_user,model_project_phase,project.group_project_user,1,0,0,0
+access_project_phase_manager,project_phase_manager,model_project_phase,project.group_project_manager,1,1,1,1
+access_task_type_user,task_type_user,model_task_type,project.group_project_user,1,0,0,0
+access_task_type_manager,task_type_user,model_task_type,project.group_project_manager,1,1,1,1
+access_support_ticket_line_user,support_ticket_line_user,model_support_ticket_line,project.group_project_user,1,1,1,0
+access_support_ticket_line_manager,support_ticket_line_manager,model_support_ticket_line,project.group_project_manager,1,1,1,1
+access_sub_status_user,sub_status_user,model_sub_status,project.group_project_user,1,0,0,0
+access_sub_status_manager,sub_status_manager,model_sub_status,project.group_project_manager,1,1,1,1
+access_action_code_user,action_code_user,model_action_code,project.group_project_user,1,0,0,0
+access_action_code_manager,action_code_manager,model_action_code,project.group_project_manager,1,1,1,1

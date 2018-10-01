@@ -24,8 +24,8 @@
     
     'images': [
 
-        'static/description/images/banner.png',
-        'static/description/images/icon.png',
+        'static/description/banner.png',
+        'static/description/icon.png',
         'static/description/index.html',
         'static/description/images/3.png',
         'static/description/images/1.png',

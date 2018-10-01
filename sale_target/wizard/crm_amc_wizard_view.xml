@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data> 
+      <record id="action_crm_report_wizard" model="ir.ui.view">
+            <field name="name">Wizard View</field>
+            <field name="model">crm.amc.wizard.filter</field>
+            <field name="arch" type="xml">
+                <form string="Report">
+                  <field name="from_menu" invisible="1"/>
+                  <group>
+                    <group attrs="{'invisible': [('from_menu', 'not in', ('amc', 'warranty', 'feedback', 'service', 'lead_analysis', 'enquiry_analysis', 'quotation_analysis', 'oc_analysis', 'serial_no'))]}">
+                          <field name="from_date" attrs="{'required': [('from_menu', 'in', ('amc', 'warranty', 'feedback', 'service', 'lead_analysis', 'enquiry_analysis', 'quotation_analysis', 'oc_analysis', 'serial_no'))]}"/>
+                          <field name="to_date" attrs="{'required': [('from_menu', 'in', ('amc', 'warranty', 'feedback', 'service', 'lead_analysis', 'enquiry_analysis', 'quotation_analysis', 'oc_analysis', 'serial_no'))]}"/>
+                        </group>
+                  </group>
+                  <!-- SALES -->
+                  <group>
+                    <group>
+                      <field name="period_from"  
+                        attrs="{'invisible': [('from_menu', 'not in', ('sales_target', 'lead_report'))], 'required': [('from_menu', 'in', ('sales_target', 'lead_report'))]}"/>
+                      <field name="period_to"  
+                        attrs="{'invisible': [('from_menu', 'not in', ('lead_report'))], 'required': [('from_menu', 'in', ('lead_report'))]}"/>
+                    </group>
+                    <group>
+                    </group>
+                  </group>
+                    <footer>
+                      <button name="crm_amc_wizard_open_window" string="View Details" class="btn btn-primary btn-sm o_list_button_add" type="object" icon="fa-check"/>
+                        or
+                      <!-- <button string="Cancel" class="oe_link"  special="cancel" icon="fa-ban"/> -->
+                      <button string="Cancel" class="btn btn-sm btn-default o_button_import"  special="cancel" icon="fa-ban"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_crm_amc_wizard" model="ir.actions.act_window">
+          <field name="name">AMC Report Data</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.amc.wizard.filter</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="roots_reports.action_crm_report_wizard"/>
+          <field name="target">new</field>
+          <field name="context">{'default_from_menu': 'amc'}</field>
+        </record>
+
+        <record id="action_crm_warranty_wizard" model="ir.actions.act_window">
+          <field name="name">Warranty Report Data</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.amc.wizard.filter</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="roots_reports.action_crm_report_wizard"/>
+          <field name="target">new</field>
+          <field name="context">{'default_from_menu': 'warranty'}</field>
+        </record>
+
+        <record id="action_crm_feedback_wizard" model="ir.actions.act_window">
+          <field name="name">Feedback Report Data</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.amc.wizard.filter</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="roots_reports.action_crm_report_wizard"/>
+          <field name="target">new</field>
+          <field name="context">{'default_from_menu': 'feedback'}</field>
+        </record>
+
+        <record id="action_crm_lead_wizard" model="ir.actions.act_window">
+          <field name="name">Lead Report Data</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.amc.wizard.filter</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="roots_reports.action_crm_report_wizard"/>
+          <field name="target">new</field>
+          <field name="context">{'default_from_menu': 'lead_report', 'default_set': True}</field>
+        </record>
+
+        <record id="action_crm_lead_analysis_wizard" model="ir.actions.act_window">
+          <field name="name">Lead Analysis Report</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.amc.wizard.filter</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="roots_reports.action_crm_report_wizard"/>
+          <field name="target">new</field>
+          <field name="context">{'default_from_menu': 'lead_analysis'}</field>
+        </record>
+
+        
+        <record id="action_crm_service_ticket_wizard" model="ir.actions.act_window">
+          <field name="name">Service Ticket Report Data</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.amc.wizard.filter</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="roots_reports.action_crm_report_wizard"/>
+          <field name="target">new</field>
+          <field name="context">{'default_from_menu': 'service'}</field>
+        </record>
+        
+
+        <record id="action_crm_sale_person_target_wizard" model="ir.actions.act_window">
+          <field name="name">Target vs Sales vs  Order Exp</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.amc.wizard.filter</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="roots_reports.action_crm_report_wizard"/>
+          <field name="target">new</field>
+          <field name="context">{'default_from_menu': 'sales_target'}</field>
+        </record>
+
+        <!-- Enquiry Analysis Report -->
+        <record id="action_crm_enquiry_analysis_wizard" model="ir.actions.act_window">
+          <field name="name">Enquiry Analysis Report</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.amc.wizard.filter</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="roots_reports.action_crm_report_wizard"/>
+          <field name="target">new</field>
+          <field name="context">{'default_from_menu': 'enquiry_analysis'}</field>
+        </record>
+
+        <!-- Quotation Analysis Report -->
+        <record id="action_crm_quotation_analysis_wizard" model="ir.actions.act_window">
+          <field name="name">Quotation Analysis Report</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.amc.wizard.filter</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="roots_reports.action_crm_report_wizard"/>
+          <field name="target">new</field>
+          <field name="context">{'default_from_menu': 'quotation_analysis'}</field>
+        </record>
+
+        <!-- Order Confirmation Analysis Report -->
+        <record id="action_crm_oc_analysis_wizard" model="ir.actions.act_window">
+          <field name="name">OC Analysis Report</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.amc.wizard.filter</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="roots_reports.action_crm_report_wizard"/>
+          <field name="target">new</field>
+          <field name="context">{'default_from_menu': 'oc_analysis'}</field>
+        </record>
+
+        <!-- V2 Point Serial no (vs) Service Ticket (vs) Visit  -->
+        <record id="action_crm_serial_service" model="ir.actions.act_window">
+          <field name="name">Serial no (vs) Service Ticket (vs) Visit Report Data</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.amc.wizard.filter</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="roots_reports.action_crm_report_wizard"/>
+          <field name="target">new</field>
+          <field name="context">{'default_from_menu': 'serial_no'}</field>
+        </record>
+
+    </data>
+</odoo>

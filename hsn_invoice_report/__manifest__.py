@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
+
 {
-    'name': 'Frequently Asked Questions',
-    'version': '1.1',
-    'summary': 'Create FAQs',
+    'name': 'HSN Invoice Report',
+    'version': '1.0',
+    'summary': 'HSN based grouping of Products in Invoice',
     'author': 'FOSS INFOTECH PVT LTD',
-    'category': 'FAQ',
+    'category': 'Accounting',
     'website': 'http://www.fossinfotech.com',
     'description': """ 
-        It enables the feature for FAQ.
-        """,
+                This module adds a functionality for HSN based grouping of Products in Invoice.
+                """,
     'depends': [
-        'base', 'web', 'mail'
+        'account'
     ],
     'data': [
-        'security/faq_security.xml',
-        'security/ir.model.access.csv',
-        'views/faq_view.xml',
+        "report/reports.xml",
+        "report/invoice_report_template.xml",
     ],
     'images': [
         'static/description/banner.png',

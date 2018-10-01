@@ -1,0 +1,546 @@
+<odoo>
+    <data>
+
+<!-- Top Menu Support Ticket -->
+        <menuitem id="support_ticket"
+            name="Task / Ticket"
+            sequence="7"/>
+        
+        <menuitem id="support_ticket_menu"
+            name="Task / Ticket"
+            parent="support_ticket"
+            sequence="1"/>
+
+        <menuitem id="support_ticket_config"
+            name="Configuration"
+            parent="support_ticket"
+            groups="project.group_project_manager"
+            sequence="2"/> 
+
+    <!-- Ticket Type FORM TREE Action Menu -->
+
+        <record model='ir.ui.view' id='support_ticket_type_form'>
+            <field name="name">support.ticket.type.form</field>
+            <field name="model">ticket.type</field>
+            <field name="arch" type="xml">
+                <form string="Ticket Type">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box" groups="base.group_no_one">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>                        
+                        <group>
+                            <field name="name"/>
+                            <field name="task_type_id"/>
+                        </group>   
+                    </sheet> 
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>                
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='support_ticket_type_tree'>
+            <field name="name">support.ticket.type.tree</field>
+            <field name="model">ticket.type</field>
+            <field name="arch" type="xml">
+                <tree string="Ticket Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model='ir.actions.act_window' id='action_ticket_type'>
+            <field name="name">Ticket Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ticket.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="support_ticket_type_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to crate a new ticket type.
+              </p>
+            </field>
+        </record>
+
+        <menuitem 
+            action="action_ticket_type" 
+            id="menu_action_ticket_type" 
+            parent="support_ticket_config"
+            name="Ticket Type" 
+            sequence="1"/>
+
+
+    <!--  Task Type FORM TREE Action Menu -->
+
+
+        <record model='ir.ui.view' id='support_task_type_form'>
+            <field name="name">support.task.type.form</field>
+            <field name="model">task.type</field>
+            <field name="arch" type="xml">
+                <form string="Task Type">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box" groups="base.group_no_one">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>                        
+                        <group>
+                            <field name="name"/>
+                        </group>   
+                    </sheet> 
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>                
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='support_task_type_tree'>
+            <field name="name">support.task.type.tree</field>
+            <field name="model">task.type</field>
+            <field name="arch" type="xml">
+                <tree string="Task Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model='ir.actions.act_window' id='action_task_type'>
+            <field name="name">Task Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">task.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="support_task_type_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to crate a new task type.
+              </p>
+            </field>
+        </record>
+
+        <menuitem 
+            action="action_task_type" 
+            id="menu_action_task_type" 
+            parent="support_ticket_config"
+            name="Task Type" 
+            sequence="2"/>
+
+    <!-- Ticket Tag FORM TREE Action Menu -->
+
+
+        <record model='ir.ui.view' id='support_ticket_tag_form'>
+            <field name="name">support.ticket.tag.form</field>
+            <field name="model">ticket.tag</field>
+            <field name="arch" type="xml">
+                <form string="Ticket Tag">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box" groups="base.group_no_one">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>                        
+                        <group>
+                            <field name="name"/>
+                        </group>   
+                    </sheet> 
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>                
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='support_ticket_tag_tree'>
+            <field name="name">support.ticket.tag.tree</field>
+            <field name="model">ticket.tag</field>
+            <field name="arch" type="xml">
+                <tree string="Ticket Tag">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model='ir.actions.act_window' id='action_ticket_tag'>
+            <field name="name">Ticket Tag</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ticket.tag</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="support_ticket_tag_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to crate a new ticket tag.
+              </p>
+            </field>
+        </record>
+
+        <menuitem 
+            action="action_ticket_tag" 
+            id="menu_action_ticket_tag" 
+            parent="support_ticket_config"
+            name="Module" 
+            sequence="3"/>
+
+
+    <!-- Project Phase FORM TREE Action Menu -->
+
+
+        <record model='ir.ui.view' id='support_project_phase_form'>
+            <field name="name">support.project.phase.form</field>
+            <field name="model">project.phase</field>
+            <field name="arch" type="xml">
+                <form string="Project Phase">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box" groups="base.group_no_one">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>                        
+                        <group>
+                            <field name="name"/>
+                        </group>   
+                    </sheet> 
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>                
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='support_project_phase_tree'>
+            <field name="name">support.project.tree.form</field>
+            <field name="model">project.phase</field>
+            <field name="arch" type="xml">
+                <tree string="Project Phase">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model='ir.actions.act_window' id='action_project_phase'>
+            <field name="name">Ticket Tag</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">project.phase</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="support_ticket_tag_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to crate a new ticket tag.
+              </p>
+            </field>
+        </record>
+
+        <menuitem 
+            action="action_project_phase" 
+            id="menu_action_project_phase" 
+            parent="support_ticket_config"
+            name="Phase" 
+            sequence="4"/>
+
+
+    <!-- Sub Status FORM TREE Action Menu -->
+
+
+        <record model='ir.ui.view' id='support_sub_status_form'>
+            <field name="name">support.sub.status.form</field>
+            <field name="model">sub.status</field>
+            <field name="arch" type="xml">
+                <form string="Sub Status">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box" groups="base.group_no_one">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>                        
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="state" required="1"/>
+                        </group>   
+                    </sheet> 
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>                
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='support_sub_status_tree'>
+            <field name="name">support.sub.status.tree</field>
+            <field name="model">sub.status</field>
+            <field name="arch" type="xml">
+                <tree string="Sub Status">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model='ir.actions.act_window' id='action_sub_status'>
+            <field name="name">Sub Status</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sub.status</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="support_sub_status_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to crate a new Sub status.
+              </p>
+            </field>
+        </record>
+
+        <menuitem 
+            action="action_sub_status" 
+            id="menu_action_sub_status" 
+            parent="support_ticket_config"
+            name="Sub Status" 
+            sequence="5"/>    
+
+
+    <!-- Action Code FORM TREE Action Menu -->
+
+
+        <record model='ir.ui.view' id='action_code_form'>
+            <field name="name">action.code.form</field>
+            <field name="model">action.code</field>
+            <field name="arch" type="xml">
+                <form string="Action Code">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box" groups="base.group_no_one">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>                        
+                        <group>
+                            <field name="name" required="1"/>
+                        </group>   
+                    </sheet> 
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>                
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='action_code_tree'>
+            <field name="name">action.code.tree</field>
+            <field name="model">action.code</field>
+            <field name="arch" type="xml">
+                <tree string="Action Code">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model='ir.actions.act_window' id='action_action_code'>
+            <field name="name">Action Code</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">action.code</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="action_code_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to crate a new Action Code.
+              </p>
+            </field>
+        </record>
+
+        <menuitem 
+            action="action_action_code" 
+            id="menu_action_action_code" 
+            parent="support_ticket_config"
+            name="Action Code" 
+            sequence="6"/> 
+
+
+    <!-- Support Ticket FORM TREE ACTION MENU -->
+        
+        <record id="support_ticket_view_form" model="ir.ui.view">
+            <field name="name">support.ticket.form</field>
+            <field name="model">support.ticket</field>
+            <field name="arch" type="xml">
+                <form string="support Ticket">
+                    <header>
+                        <button 
+                            name="set_todo" 
+                            string="Set Todo" 
+                            attrs="{'invisible':[('stage_id', 'not in', 'draft')]}" 
+                            type="object" 
+                            class="oe_highlight"/>
+                        <button name="set_pending" 
+                            string="Pending" 
+                            type="object" 
+                            attrs="{'invisible':[('stage_id', 'not in', ('draft','open'))]}" 
+                            class="oe_highlight"/>
+                        <button 
+                            name="set_draft" 
+                            string="Set To Draft" 
+                            attrs="{'invisible':[('stage_id', 'not in', ('pending','cancelled'))]}" 
+                            type="object" 
+                            class="oe_highlight"/> 
+                        <button 
+                            name="set_done" 
+                            string="Complete" 
+                            attrs="{'invisible':[('stage_id', 'not in', 'open')]}" 
+                            type="object" 
+                            class="oe_highlight"/>  
+
+                        <button 
+                            name="set_cancel" 
+                            string="Cancel" 
+                            type="object" 
+                            attrs="{'invisible':[('stage_id', 'not in', ('open','draft','pending'))]}" 
+                            class="oe_highlight"/> 
+
+                        <field name="stage_id" widget="statusbar" options="{'fold_field': 'fold'}"/>
+                    </header>
+                    <sheet>                      
+                        <div class="oe_title">                            
+                            <h1><field name="name" class="oe_inline" readonly="1" style="color:black"/></h1>
+                            <h1><field name="subject" class="field_name" placeholder="Subject..." attrs="{'readonly':[('stage_id', 'not in', ('open','draft'))]}"/></h1>
+                        </div>                    
+                        <group>
+                            <group>
+                                <field name="project_id" required="1" attrs="{'readonly':[('stage_id', 'not in', 'draft')]}"/>
+                                <field name="partner_name" attrs="{'readonly':[('stage_id', 'not in', 'draft')]}" required="1"/>
+                                <field name="medium" attrs="{'readonly':[('stage_id', 'not in', ('draft','open'))]}" required="1"/>
+                                <field name="partner_phone" attrs="{'readonly':[('stage_id', 'not in', 'draft')]}"/>
+                                <field name="partner_email" attrs="{'readonly':[('stage_id', 'not in', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="tag_id" attrs="{'readonly':[('stage_id', 'not in', ('draft','open'))]}"/>
+                                <field name="phase_id" attrs="{'readonly':[('stage_id', 'not in', ('draft','open'))]}"/>
+                                <field name="task_type_id" required="1" attrs="{'readonly':[('stage_id', 'not in', ('open','draft'))]}"/>
+                                <field 
+                                    name="ticket_type_id" 
+                                    required="1" 
+                                    attrs="{'readonly':[('stage_id', 'not in', ('draft','open'))]}"
+                                    domain="([('task_type_id','in',[task_type_id])])"
+                                    />
+                                <field name="reference" required="1" attrs="{'readonly':[('stage_id', 'not in', ('draft','open'))]}"/>
+                            </group>
+                            <group>
+                                    <field name="priority" widget="selection" attrs="{'readonly':[('stage_id', 'not in', ('open','draft'))]}"/>
+                                    <field name="severity" widget="selection" attrs="{'readonly':[('stage_id', 'not in', ('open','draft'))]}"/>
+                                    <field name="user_id" required="1" attrs="{'readonly':[('stage_id', 'not in', 'draft')]}"/>
+                                    <field name="support_user_ids" widget="many2many_tags" attrs="{'readonly':[('stage_id', 'not in', ('draft','open'))]}"/>
+                                    <field name="sub_status_id" readonly="1"/>
+                                    <field name="attachment"/>
+                            </group>
+                            <group>
+
+                                <field name="create_date" readonly="1" string="Task Date"/>
+                                <field name="ticket_raised_date" required="1" attrs="{'readonly':[('stage_id', 'not in', 'draft')]}"/>
+                                <field name="expected_completed_date" attrs="{'readonly':[('stage_id', 'not in', ('draft','open'))]}"/>
+                                <field name="completed_date" attrs="{'readonly':[('stage_id', 'not in', 'open')]}"/>
+                                <field name="effort_required" attrs="{'readonly':[('stage_id', 'not in', ('draft','open'))]}"/>
+                                <field name="time_spent" readonly="1"/>
+                                <field name="response_tat" readonly="1"/>
+                                <field name="resolution_tat" readonly="1"/>
+                                
+                            </group>
+                        </group>
+                        <label for="description" string="Description"></label>
+                        <field name="description" class="field_description" placeholder="Description of the ticket..." required="1" attrs="{'readonly':[('stage_id', 'not in', ('draft','open'))]}"/>
+                        <label for="solution_given" string="Solution Given"></label>
+                        <field name="solution_given" attrs="{'readonly':[('stage_id', 'not in', ('open','draft'))]}"/>
+                        <notebook>
+                            <page string="Activities">
+                                <field mode="tree" name="ticket_line" nolabel="1">
+                                    <tree string="Activities" editable="bottom" attrs="{'readonly':[('parent.stage_id', 'not in', ('open','draft'))]}">
+                                        <field name="name" invisible="1"/>
+                                        <field name="s_no" readonly="1"/>
+                                        <field name="is_invisible" readonly="1" invisible="1"/>
+                                        <field name="action_code_id" required="1" attrs="{'readonly':[('is_invisible', '=', True)]}" options="{'no_open':True}"/>
+                                        <field name="action_taken" required="1" attrs="{'readonly':[('is_invisible', '=', True)]}"/>
+                                        <field name="user_id" required="1" attrs="{'readonly':[('is_invisible', '=', True)]}" options="{'no_open':True}"/>
+                                        <field name="sub_status_id" required="1" attrs="{'readonly':[('is_invisible', '=', True)]}" options="{'no_open':True}"/>
+                                        <field name="from_date" required="1" attrs="{'readonly':[('is_invisible', '=', True)]}"/>
+                                        <field name="hrs_spent" readonly="1" invisible="1"/>
+                                        <field name="to_date" required="1" attrs="{'readonly':[('is_invisible', '=', True)]}"/>
+                                        <field name="hrs_diff" readonly="1"/>
+                                        <field name="entry_date" readonly="1" invisible="1"/>
+                                        <field name="attachment" widget="binary" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='support_ticket_view_tree'>
+            <field name="name">support.ticket.view.tree</field>
+            <field name="model">support.ticket</field>
+            <field name="arch" type="xml">
+                <tree string="Support Ticket">
+                    <field name="name" string="Task No"/>
+                    <field name="create_date" string="Task Date"/>
+                    <field name="project_id"/>
+                    <field name="tag_id"/>
+                    <field name="stage_id"/>
+                    <field name="sub_status_id"/>
+                    <field name="user_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="support_ticket_view_calendar" model="ir.ui.view">
+            <field name="name">support.ticket.view.calendar</field>
+            <field name="model">support.ticket</field>
+            <field name="arch" type="xml">
+                <calendar string="Support Ticket" color="project_id" date_start="ticket_raised_date"
+                          mode="month" quick_add="False">
+                    <field name="name"/>
+                    <field name="project_id"/>
+                </calendar>
+            </field>
+        </record>
+
+
+
+        <record model='ir.actions.act_window' id='action_support_ticket'>
+            <field name="name">Tickets</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">support.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot,calendar,graph</field>
+            <field name="view_id" ref="support_ticket_view_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to crate a new Ticket.
+              </p>
+            </field>
+        </record>
+
+        <menuitem 
+            action="action_support_ticket" 
+            id="menu_action_support_ticket" 
+            parent="support_ticket_menu"
+            name="Tasks / Tickets" 
+            sequence="1"/>  
+    </data>
+</odoo>

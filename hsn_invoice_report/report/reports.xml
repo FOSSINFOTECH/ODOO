@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<!-- Invoice Reports -->
+        <report 
+            string="HSN Invoice Report" 
+            id="action_report_customer_invoice" 
+            model="account.invoice" 
+            report_type="qweb-pdf"
+            name="hsn_invoice_report.report_customer_invoice" 
+            file="hsn_invoice_report.report_customer_invoice"
+        />
+
+    </data>
+</odoo>

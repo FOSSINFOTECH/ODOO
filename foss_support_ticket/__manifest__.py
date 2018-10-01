@@ -1,22 +1,19 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name': 'Frequently Asked Questions',
-    'version': '1.1',
-    'summary': 'Create FAQs',
+    'name': 'Support Ticket',
+    'version': '1.0',
+    'summary': 'Support Ticketing System',
     'author': 'FOSS INFOTECH PVT LTD',
-    'category': 'FAQ',
+    'category': 'Extra Tools',
     'website': 'http://www.fossinfotech.com',
-    'description': """ 
-        It enables the feature for FAQ.
-        """,
-    'depends': [
-        'base', 'web', 'mail'
-    ],
+    'description': """Support Ticket System""",
+    'depends': ['base', 'project','hr_timesheet','link_tracker'],
     'data': [
-        'security/faq_security.xml',
+        'data/ir_sequence_data.xml',
+        'security/record_rules.xml',
         'security/ir.model.access.csv',
-        'views/faq_view.xml',
+        'views/support_ticket_views.xml',
     ],
     'images': [
         'static/description/banner.png',

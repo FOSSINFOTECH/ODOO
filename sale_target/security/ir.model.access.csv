@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_target_sale_engineer,Target Sales Engineer,model_target_sale_engineer,sales_team.group_sale_salesman,1,0,0,0
+access_target_sale_manager,Target Sales Manager,model_target_sale_engineer,sales_team.group_sale_salesman_all_leads,1,1,1,0
+access_user_line_se,Target Sales Engineer Line,model_user_line,sales_team.group_sale_salesman,1,1,0,0
+access_user_line_sm,Target Sales Manager Line,model_user_line,sales_team.group_sale_salesman_all_leads,1,1,1,0

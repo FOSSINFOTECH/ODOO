@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name': 'Frequently Asked Questions',
+    'name': 'Sales Team Target Management',
     'version': '1.1',
-    'summary': 'Create FAQs',
+    'summary': 'Sales Team Target Management',
     'author': 'FOSS INFOTECH PVT LTD',
-    'category': 'FAQ',
+    'category': 'Sales',
     'website': 'http://www.fossinfotech.com',
-    'description': """ 
-        It enables the feature for FAQ.
-        """,
+    'description': """This module helps in fixing a target to the sales team and also helps view the difference in the actual sales done and Planned target amount with a single click.""",
     'depends': [
-        'base', 'web', 'mail'
+        'base',
+        'sale',
     ],
     'data': [
-        'security/faq_security.xml',
+        'security/security.xml',
         'security/ir.model.access.csv',
-        'views/faq_view.xml',
+        'views/sale_engineer_target_view.xml',
     ],
     'images': [
         'static/description/banner.png',

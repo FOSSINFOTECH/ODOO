@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.rule" id="support_ticket_user_rule">
+             <field name="name">Support Ticket: User</field>
+             <field name="model_id" ref="model_support_ticket"></field>
+             <field name="groups" eval="[(4,ref('project.group_project_user'))]"></field>
+             <field name="domain_force">['|',('user_id','=',user.id),('support_user_ids.id', '=', user.id)]</field>
+             <field eval="1" name="perm_write"></field>
+             <field eval="1" name="perm_read"></field>
+             <field eval="1" name="perm_unlink"></field>
+             <field eval="1" name="perm_create"></field>
+        </record>
+    </data>
+</odoo>

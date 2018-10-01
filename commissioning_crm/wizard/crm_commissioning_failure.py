@@ -28,4 +28,3 @@ class CommissioningFailure(models.TransientModel):
         return True
 
 
-CommissioningFailure()

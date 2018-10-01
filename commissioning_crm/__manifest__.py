@@ -4,11 +4,11 @@
 {
     'name': 'After Sales Commissioning',
     'version': '11.0',
-    'summary': '',
+    'summary': 'You can create commissioning and manage them very easily',
     'author': 'FOSS INFOTECH PVT LTD',
-    'category': 'Generic Modules',
+    'category': 'Extra Tools',
     'website': 'http://www.fossinfotech.com',
-    'description': """CRM - After Sales, Service, Campaign, Events""",
+    'description': """After Sales Commissioning module for Odoo 11. This module allows you to define service engineers to their commissions and generates visits for the respective commissions. """,
     'depends': ['base','product','sale', 'account','stock','project'],
     'data': [
         'security/commission_security.xml',
