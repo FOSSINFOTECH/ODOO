@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <record model="ir.ui.view" id="hr_company_holidays_tree">
+            <field name="name">hr.company.holidays.tree</field>
+            <field name="model">hr.company.holidays</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Holidays">
+                    <field name="date"/>
+                    <field name="description"/>
+                    <field name="category_id"/>
+                    <field name="active"/>
+                    <field name="month" invisible="1"/>
+                    <field name="year"  invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="hr_company_holidays_form">
+            <field name="name">hr.company.holidays.form</field>
+            <field name="model">hr.company.holidays</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Holidays">
+                  <group>
+                    <field name="date" required="1"/>
+                    <field name="description" required="1"/>
+                    <field name="category_id" required="1"/>
+                    <field name="active"/>
+                  </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_company_holidays_filter">
+            <field name="name">hr.company.holidays.filter</field>
+            <field name="model">hr.company.holidays</field>
+            <field name="priority" eval="15"/>
+            <field name="arch" type="xml">
+                <search string="Search Holidays by">
+                    <filter string="Holidays this month" name="current_month" domain="[('month','=',((context_today()).strftime('%%-m')))]"/>
+                    <filter string="Holidays this year" name="current_year" domain="[('year','=',((context_today()).strftime('%%Y')))]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Year" name="year" domain="[]"  context="{'group_by':'year'}"/>
+                        <filter string="Month" name="month" domain="[]"  context="{'group_by':'month'}"/>
+                        <filter string="Category" name="category_id" domain="[]"  context="{'group_by':'category_id'}"/>
+                    </group> 
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="hr_company_holidays_all_act">
+            <field name="name">Company Holidays</field>
+            <field name="res_model">hr.company.holidays</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="hr_company_holidays_filter"/>
+        </record>
+
+        <menuitem id="mnu_holidays_hdr" name="Company Holidays" parent="hr.menu_hr_root" sequence='21'/>
+        <menuitem id="mnu_holidays" action="hr_company_holidays_all_act" parent="mnu_holidays_hdr" />
+
+    </data>
+</openerp>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <data>
+        
+      <record id="view_schedule_calendar_form" model="ir.ui.view">
+         <field name="name">Schedule Calendar Form</field>
+         <field name="model">schedule.calendar</field>
+         <field name="arch" type="xml">
+           <form string="Schedule Calendar">
+            <header>
+                <button name="call_action" string="View Record" attrs="{'invisible': [('res_model', '=', False)]}" class="oe_highlight" type="object"/>
+            </header>
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="user_id" options="{'no_create':True, 'no_create_edit':True, 'no_open':True}"/>
+                        <field name="attendee_ids" options="{'no_create':True, 'no_create_edit':True, 'no_open':True}" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="res_model" invisible="1"/>
+                    </group>
+                </group>
+            </sheet>
+            </form>
+         </field>
+      </record>
+
+    <record id="view_schedule_calendar_tree" model="ir.ui.view">
+         <field name="name">Schedule Calendar Tree</field>
+         <field name="model">schedule.calendar</field>
+         <field name="arch" type="xml">
+           <tree string="Schedule Calendar">
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="attendee_ids"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+            </tree>
+         </field>
+    </record>
+
+    <record id="view_schedule_calendar_calendar" model="ir.ui.view">
+        <field name="name">Schedule Calendar Calendar</field>
+        <field name="model">schedule.calendar</field>
+        <field name="priority" eval="2"/>
+        <field name="arch" type="xml">
+            <calendar string="Meetings" date_start="start_date" date_stop="end_date">
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="color_partner_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="attendee_ids"/>
+            </calendar>
+        </field>
+    </record>
+
+        <record id="view_task_form_inherit" model="ir.ui.view">
+            <field name="name">project.task.form.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="tag_ids" position="before">
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </field>
+                <field name="date_deadline" position="replace"/>
+                <field name="date_assign" position="after">
+                    <field name="date_deadline"/>
+                </field>
+            </field>
+        </record>
+
+
+    <record id="action_schedule_calendar" model="ir.actions.act_window">
+        <field name="name">Schedule Calendar</field>
+        <field name="res_model">schedule.calendar</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="domain"></field>
+        <field name="view_id" ref="view_schedule_calendar_calendar"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_view_schedule_calendar_calendar">
+        <field name="act_window_id" ref="action_schedule_calendar"/>
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="view_schedule_calendar_calendar"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_view_schedule_calendar_tree">
+        <field name="act_window_id" ref="action_schedule_calendar"/>
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_schedule_calendar_tree"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_view_schedule_calendar_form">
+        <field name="act_window_id" ref="action_schedule_calendar"/>
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_schedule_calendar_form"/>
+    </record>
+
+    <menuitem name="Schedule Calendar" id="mail_menu_schedule_calendar" sequence="3" action="action_schedule_calendar" groups="base.group_user"/>
+    
+    </data>
+</odoo>
