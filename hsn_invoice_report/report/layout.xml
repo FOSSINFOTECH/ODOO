@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- External layouts styles -->
+   <template id="external_layout_common_header">
+        <t t-foreach="docs" t-as="o">
+            <!-- Header for the HSN based invoice report -->
+            <div class="header">
+                <t t-if="o and 'company_id' in o">
+                    <t t-set="company" t-value="o.company_id"/>
+                </t>
+                <t t-if="not o or not 'company_id' in o">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+                <div class="row">
+                    <div class="col-6">
+                       <span><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" style="max-height:80px;padding-top:10px;"/></span>
+                    </div>
+                    <div class="col-4">
+                    </div>
+                    <div class="col-2" align="text-center" style="font-size:20px;top:30px">
+                        <b><span>INVOICE</span></b>
+                    </div>
+                </div><br/>
+                <div class="row" style="border-bottom: 1px solid black;">
+                    <div class="col-12">
+                        <b><span t-esc="o.company_id.name"/></b><br/>
+                        <span t-esc="o.company_id.street"/><br/>
+                        <span t-esc="o.company_id.street2"/><br/>
+                        <span t-esc="o.company_id.city"/> - <span t-esc="o.company_id.zip"/><br/>
+                        <span t-esc="o.company_id.state_id.name"/> , <span t-esc="o.company_id.country_id.name"/>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer for the HSN based invoice report -->
+            <div class="footer" style= "border-top: 1px solid black;font-size:13px;height:15px;">
+                <div class="row">
+                    <div class="col-3">
+                    </div>
+                     <div class="col-7" align="text-center" >
+                        Phone: <span t-esc="o.company_id.phone"/> | Email:<span t-esc="o.company_id.email"/>
+                    </div>
+                     <div class="col-2">
+                    </div>
+
+                </div>
+                 <div class="row">
+                    <div class="col-4">
+                    </div>
+                     <div class="col-6" align="text-center">
+                        Website: <span t-esc="o.company_id.website"/>
+                    </div>
+                     <div class="col-2" align="text-center">
+                         <p class="text-right">Page: <span class="page"/> / <span class="topage"/></p>   
+                    </div>
+
+                </div>
+            </div>
+            <div class="article o_report_layout_standard">
+                <t t-raw="0" />
+            </div>
+        </t>
+    </template>
+
+</odoo>

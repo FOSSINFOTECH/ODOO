@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_customer_invoice_document">
+        <t t-call="web.html_container">
+            <t t-call="hsn_invoice_report.external_layout_common_header">
+                <t t-if="o and 'company_id' in o">
+                    <t t-set="company" t-value="o.company_id"></t>
+                    </t>
+                    <t t-if="not o or not 'company_id' in o">
+                    <t t-set="company" t-value="res_company"></t>
+                </t>
+                <t t-foreach="docs" t-as="o">
+                    <div class="page" style="font-size:15px;width:980px;">
+                        <table  cellspacing="10">
+                            <tr>
+                                <td>
+                                    <span>To,</span><br/>
+                                    <strong><span t-esc="o.partner_id.name"/></strong><br/>
+                                    <span t-esc="o.partner_id.street"/>
+                                    <span t-esc="o.partner_id.street2"/><br/>
+                                    <span t-esc="o.partner_id.city"/>-<span t-esc="o.partner_id.zip"/><br/>
+                                    <span t-esc="o.partner_id.state_id.name"/>,<span t-esc="o.partner_id.country_id.name"/><br/>
+                                    GST:<span t-esc="o.partner_id.vat"/><br/>
+                                    Tel:<span t-esc="o.partner_id.phone"/>
+                                </td>
+                            </tr>
+                        </table><br/>
+                        <table  class="table table-bordered" style="table-layout:auto">
+                            <thead>
+                                <tr>
+                                    <th  class="text-center" colspan="4">
+                                      INVOICE NO
+                                    </th>
+                                    <th class="text-center" colspan="4">
+                                        INVOICE DATE
+                                    </th>
+                                    <th  class="text-center" colspan="4">
+                                       DUE DATE
+                                    </th>
+                                    <th  class="text-center" colspan="4">
+                                        YOUR REFERENCE
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        <span t-if="o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')">
+                                        <span t-field="o.number"/></span>
+                                        <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
+                                        <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice
+                                        </span>
+                                        <span t-if="o.type == 'out_refund'">Credit Note</span>
+                                        <span t-if="o.type == 'in_refund'">Vendor Credit Note</span>
+                                        <span t-if="o.type == 'in_invoice'">Vendor Bill</span>
+                                       
+                                    </td>
+                                    <td colspan="4">
+                                        <span t-esc="o.date_invoice"/>
+                                    </td>
+                                    <td colspan="4">
+                                        <span t-esc="o.date_due"/>
+                                    </td>
+                                    <td colspan="4">
+                                         <span t-esc="o.name"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table  class="table table-bordered" style="table-layout:auto">
+                            <thead>
+                                <tr>
+                                    <td rowspan="2"><b>S.No</b></td>
+                                    <td class="text-center" colspan="4" rowspan="2"><b>DESCRIPTION</b></td>
+                                    <td class="text-center" rowspan="2" colspan="4"><b>QTY</b></td>
+                                    <td class="text-center" rowspan="2" colspan="4"><b>RATE</b></td>
+                                    <td class="text-center" rowspan="2" colspan="4"><b>DISC%</b></td>
+                                    <td class="text-center" colspan="4"><b>CGST</b></td>
+                                    <td class="text-center" colspan="4"><b>SGST</b></td>
+                                    <td class="text-center" colspan="4"><b>IGST</b></td>
+                                    <td class="text-center" rowspan="2" colspan="4"><b>PRICE</b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center"><b>Rate</b></td>
+                                    <td colspan="2" align="center"><b>Amt</b></td>
+                                    <td colspan="2" align="center"><b>Rate</b></td>
+                                    <td colspan="2" align="center"><b>Amt</b></td>
+                                    <td colspan="2" align="center"><b>Rate</b></td>
+                                    <td colspan="2" align="center"><b>Amt</b></td>
+                                </tr>
+                           </thead>
+                            <t t-set="i" t-value="1" /> 
+                            <t t-set="val" t-value="0" /> 
+                            <tbody class="gst_tbody">
+                                <t t-foreach="o.get_hsn_code(hsn)" t-as="hsn_data">
+                                     <tr>
+                                        <td colspan="32" style="font-size:15px;">
+                                            <strong>HSN/SAC Code : <span t-esc="hsn_data"/></strong>
+                                        </td>
+                                        <tr t-foreach="o.invoice_line_ids" t-as="line">
+                                            <t t-if="hsn_data == line.product_id.l10n_in_hsn_code">
+                                                <td  class="text-center">
+                                                     <span t-esc="i"/>
+                                                     <t t-set="i" t-value="i+1"/>
+                                                </td>
+                                                <td colspan="4" class="text-left" >
+                                                    <span t-field="line.product_id.name"/>
+                                                </td>
+                                                <td colspan="4" class="text-center" >
+                                                    <span t-field="line.quantity"/>
+                                                </td>
+                                                <td colspan="4" class="text-right" >
+                                                    <span t-field="line.price_unit"/>
+                                                </td>
+                                                <td colspan="4" class="text-center" >
+                                                    <span t-field="line.discount"/>
+                                                </td>
+                                                <td colspan="2" class="text-center">
+                                                    <!-- <t t-foreach="docs.get_gst(dosc.id)[0]" t-as="get_gst">
+                                                        <td>
+                                                            <t t-foreach="get_gst.(product_id.id)[0]" t-as="gst">
+                                                                 <span  t-esc="gst"/>,
+                                                          </t>
+                                                        </td>
+                                                    </t> -->
+                                                    <span t-esc="round(o.get_gst(o.id,line.product_id.id)[0],2)"/><span>%</span>
+                                                </td>
+                                                <td colspan="2" class="text-right">
+                                                    <span t-esc="round(o.get_gst(o.id,line.product_id.id)[1],2)"/>
+                                                </td>
+                                                <td colspan="2" class="text-center">
+                                                    <span t-esc="round(o.get_gst(o.id,line.product_id.id)[0],2)"/><span>%</span>
+                                                </td>
+                                                <td colspan="2" class="text-right">
+                                                    <span t-esc="round(o.get_gst(o.id,line.product_id.id)[1],2)"/>
+                                                </td>
+                                                <td colspan="2" class="text-center">
+                                                    <span t-esc="round(o.get_igst(o.id,line.product_id.id)[0],2)"/><span>%</span>
+                                                </td>
+                                                <td colspan="2" class="text-center">
+                                                     <span t-esc="round(o.get_igst(o.id,line.product_id.id)[1],2)"/>
+                                                </td>
+                                                <td colspan="4" class="text-right">
+                                                    <span t-field="line.price_subtotal"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </tr>
+                                </t>
+                        </tbody>
+                        </table>
+                         <div class="clearfix">
+                                <div id="total" class="row" name="total">
+                                    <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                                        <table class="table table-sm">
+                                            <tr class="border-black o_subtotal" style="">
+                                                <td><strong>Subtotal</strong></td>
+                                                <td class="text-right">
+                                                    <span t-field="o.amount_untaxed"/>
+                                                </td>
+                                            </tr>
+                                            <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                                <tr style="">
+                                                    <t t-if="len(o.tax_line_ids) == 1 and o.amount_untaxed == amount_by_group[2]">
+                                                        <td><span t-esc="amount_by_group[0]"/></td>
+                                                        <td class="text-right o_price_total">
+                                                            <span t-esc="amount_by_group[3]" />
+                                                        </td>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <td>
+                                                            <span t-esc="amount_by_group[0]"/>
+                                                            <span>&amp;nbsp;<span>on</span>
+                                                                <t t-esc="amount_by_group[4]"/>
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-right o_price_total">
+                                                            <span t-esc="amount_by_group[3]"/>
+                                                        </td>
+                                                    </t>
+                                                </tr>
+                                              </t>
+                                            <tr class="border-black o_total">
+                                                <td><strong>Total</strong></td>
+                                                <td class="text-right">
+                                                    <span t-field="o.amount_total"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                          </div><br/>
+                         <div class="row">
+                                <div class="col-12" align="text-right" style="font-size:15px;">
+                                    <b>Payment Term : </b><span t-field="o.payment_term_id"/>
+                                </div>
+                         </div><br/>
+                    </div>
+                    <p style="page-break-after:always"></p>
+                </t>
+            </t> 
+        </t>
+    </template>
+    <template id="report_customer_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="hsn_invoice_report.report_customer_invoice_document"/>
+            </t>
+        </t>
+    </template>
+</odoo>

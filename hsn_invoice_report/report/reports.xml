@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- Invoice Reports -->
+        <report 
+            string="HSN Invoice Report" 
+            id="action_report_customer_invoice" 
+            model="account.invoice" 
+            report_type="qweb-pdf"
+            name="hsn_invoice_report.report_customer_invoice" 
+            file="hsn_invoice_report.report_customer_invoice"
+        />
+
+            <!--HSN invoice report paper format -->
+            <record id="paperformat_hsn_invoice_report" model="report.paperformat">
+            <field name="name">HSN invoice</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">55</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">51</field>
+            <field name="dpi">90</field>
+        </record>
+
+
+            <record id="hsn_invoice_report.action_report_customer_invoice" model="ir.actions.report">
+                <field name="paperformat_id" ref="hsn_invoice_report.paperformat_hsn_invoice_report" />
+            </record>
+
+    </data>
+</odoo>
