@@ -27,6 +27,12 @@
         'report/invoice_report_template.xml',
         'report/layout.xml',
     ],
+    
+    'images': [
+        'static/description/banner.png',
+        'static/description/icon.png',
+        'static/description/index.html',
+    ],
 
     'installable': True,
 
