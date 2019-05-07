@@ -17,14 +17,28 @@
             <field name="arch" type="xml">
                 <form string="FAQ">
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
                         <group>
                             <field name="name"/>
-                            <field name="solution"/>
+                            <field name="category_ids" widget="many2many_tags"/>
                             <field name="filename" invisible="1"/>
                             <field name="attachment" filename="filename"/>
-                            <field name="active" groups="base.group_no_one"/>
                         </group>
-                    </sheet>                                             
+                        <notebook>
+                            <page string="Solution">
+                                <field name="solution"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -35,6 +49,7 @@
             <field name="arch" type="xml">
                 <tree string="FAQ">
                     <field name="name"/>
+                    <field name="category_ids"/>
                 </tree>
             </field>
         </record>
