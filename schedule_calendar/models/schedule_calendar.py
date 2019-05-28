@@ -100,14 +100,17 @@ class Task(models.Model):
     _inherit = 'project.task'
 
     schedule_calendar_id = fields.Many2one('schedule.calendar', string='Schedule Calendar')
-    date_start = fields.Date('Start Date', required="1")
-    date_end = fields.Date('End Date', required="1")
+    date_start = fields.Datetime('Start Date', required="1")
+    date_end = fields.Datetime('End Date', required="1")
 
     @api.model
     def create(self, values):
+        print('==========')
         create_vals = {}
         schedule_calendar_obj = self.env['schedule.calendar']
-        test=values.get('date_end')     
+        print(schedule_calendar_obj,'6666666666')
+        test = values.get('date_end')
+        print(test,'===============')     
         res = super(Task, self).create(values)
         res.date_end = test
         user_partner_id = self.env['res.users'].browse(values.get('user_id')).partner_id.id

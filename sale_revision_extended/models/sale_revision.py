@@ -69,10 +69,12 @@ class SaleRevision(models.Model):
                 'state': 'draft',
                 'order_id': x.revision_id.order_id.id,
             }
-        sale_line_obj.create(vals)
+            sale_line_obj.create(vals)
         self.env['sale.order'].write({'revision_no': revision_id.name})
-        return True
-
+        return  {
+                'type': 'ir.actions.client',
+                'tag' : 'reload'
+               }
 
 class SaleRevisionLine(models.Model):
     _name = 'sale.revision.line'

@@ -20,7 +20,7 @@
 
     'version': '12.0.0.0.0',
 
-    'depends': ['sale'],
+    'depends': ['sale', 'sale_management'],
 
     'data': [
         'security/ir.model.access.csv',
