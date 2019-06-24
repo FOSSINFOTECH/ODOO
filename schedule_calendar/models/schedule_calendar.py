@@ -2,6 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import models, fields, api
+
 class schedule_calendar(models.Model):
     _name = "schedule.calendar"
     _description = "Schedule Calendar"
@@ -105,12 +106,9 @@ class Task(models.Model):
 
     @api.model
     def create(self, values):
-        print('==========')
         create_vals = {}
         schedule_calendar_obj = self.env['schedule.calendar']
-        print(schedule_calendar_obj,'6666666666')
         test = values.get('date_end')
-        print(test,'===============')     
         res = super(Task, self).create(values)
         res.date_end = test
         user_partner_id = self.env['res.users'].browse(values.get('user_id')).partner_id.id

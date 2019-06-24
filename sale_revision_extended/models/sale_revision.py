@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
                 'name': line.name,
                 'product_id': line.product_id.id,
                 'price_unit': line.price_unit,
-                'tax_id': [(6, 0, [x.id for x in line.tax_id])],
+                'tax_id': [(6, 0, line.tax_id.ids)] or '',
                 'product_uom_qty': line.product_uom_qty,
             }
             rev_line_obj.create(vals)
@@ -64,7 +64,7 @@ class SaleRevision(models.Model):
                 'name': x.name,
                 'product_id': x.product_id.id,
                 'price_unit': x.price_unit,
-                'tax_id': [(6, 0, [a.id for a in x.tax_id])],
+                'tax_id': [(6, 0, x.tax_id.ids)] or '',
                 'product_uom_qty': x.product_uom_qty,
                 'state': 'draft',
                 'order_id': x.revision_id.order_id.id,

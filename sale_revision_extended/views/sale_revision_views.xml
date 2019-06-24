@@ -12,7 +12,7 @@
                             <field name="revision_no" readonly="1"/>
                         </group>
                         <group>
-                            <button name="create_revisions" class="oe_highlight" string="Create Revision" type="object" icon="fa-archive" states="draft,sent"/>
+                            <button name="create_revisions" class="oe_highlight" string="Create Revision" type="object" icon="fa-archive" states="draft,sent,sale"/>
                         </group>
                     </group>
                 </xpath>
@@ -40,7 +40,7 @@
                                                     <field name="product_id"/>
                                                     <field name="name"/>
                                                     <field name="product_uom_qty"/>
-                                                    <field name="tax_id"/>
+                                                    <field name="tax_id" widget="many2many_tags"/>
                                                     <field name="price_unit"/>          
                                                 </tree>
                                             </field>
