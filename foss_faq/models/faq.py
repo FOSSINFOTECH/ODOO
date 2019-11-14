@@ -15,3 +15,8 @@ class FaqFaq(models.Model):
     solution = fields.Html(string="Solution", track_visibility="always")
     attachment = fields.Binary(string="Attachment")
     filename = fields.Char(string="Filename")
+
+    # Additional Fields 11/09/19
+    tag_ids = fields.Many2many('faq.tag', string='Tags')
+    category_id = fields.Many2one('faq.category', string='Category')
+    video = fields.Char()

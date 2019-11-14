@@ -27,7 +27,11 @@
                             <field name="name"/>
                             <field name="solution"/>
                             <field name="filename" invisible="1"/>
+                            <field name="video" widget="url"/>
                             <field name="attachment" filename="filename"/>
+                            
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="category_id"/>
                         </group>
                     </sheet>                                             
                 </form>

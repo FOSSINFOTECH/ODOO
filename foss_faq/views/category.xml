@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model='ir.ui.view' id='view_category_form'>
+        <field name="name">faq.category.form</field>
+        <field name="model">faq.category</field>
+        <field name="arch" type="xml">
+            <form string="FAQ Category">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="question_ids" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='view_category_tree'>
+        <field name="name">faq.category.tree</field>
+        <field name="model">faq.category</field>
+        <field name="arch" type="xml">
+            <tree string="FAQ Category" editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='view_category_kanban'>
+        <field name="name">faq.category.kanban</field>
+        <field name="model">faq.category</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name" />
+                <field name="question_ids" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click_edit">
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <div class="text-muted o_kanban_record_subtitle">
+                                    <field name="question_ids"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='view_category_search'>
+        <field name="name">faq.category.search</field>
+        <field name="model">faq.category</field>
+        <field name="arch" type="xml">
+            <search string="FAQ Category">
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record model='ir.actions.act_window' id='action_faq_category'>
+        <field name="name">FAQ Category</field>
+        <field name="res_model">faq.category</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem action="action_faq_category" id="menu_faq_category" name="Categories" parent="base_menu_faq" sequence="2" groups="group_faq_manager"/>
+
+</odoo>
