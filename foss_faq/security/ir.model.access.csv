@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_faq_faq_user,faq.faq.user,model_faq_faq,base.group_user,1,0,0,0
+access_faq_faq_mgr,faq.faq.mgr,model_faq_faq,group_faq_manager,1,1,1,1
+access_faq_admin,faq_faq_admin,model_faq_faq,base.group_erp_manager,1,1,1,1
+access_faq_tag_user,faq.faq.user,model_faq_tag,base.group_user,1,0,0,0
+access_faq_tag_mgr,faq.faq.mgr,model_faq_tag,group_faq_manager,1,1,1,1
+access_faq_admin,faq_tag_admin,model_faq_tag,base.group_erp_manager,1,1,1,1
+access_faq_category_user,faq.faq.user,model_faq_category,base.group_user,1,0,0,0
+access_faq_category_mgr,faq.faq.mgr,model_faq_category,group_faq_manager,1,1,1,1
+access_faq_admin,faq_category_admin,model_faq_category,base.group_erp_manager,1,1,1,1

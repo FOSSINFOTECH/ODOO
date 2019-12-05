@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<odoo>
+        <menuitem 
+            name="FAQ"
+            id="base_menu_faq"
+            groups="base.group_user" web_icon="foss_faq,static/description/iconfaq.png"/>
+
+        <menuitem 
+            id="menu_faq" 
+            name="FAQ" 
+            parent="base_menu_faq" 
+            sequence="1"/>
+
+            <!-- FORM VIEW OF FAQ -->
+		<record model='ir.ui.view' id='faq_faq_form'>
+            <field name="name">faq.faq.form</field>
+            <field name="model">faq.faq</field>
+            <field name="arch" type="xml">
+                <form string="FAQ">
+                    <sheet>
+                         <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="base.group_no_one">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name"/>
+                            <field name="solution"/>
+                            <field name="filename" invisible="1"/>
+                            <field name="video" widget="url"/>
+                            <field name="attachment" filename="filename"/>
+                            
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="category_id"/>
+                        </group>
+                    </sheet>                                             
+                </form>
+            </field>
+        </record>
+
+        <!-- TREE VIEW OF FAQ -->
+        <record model='ir.ui.view' id='faq_faq_tree'>
+            <field name="name">faq.faq.tree</field>
+            <field name="model">faq.faq</field>
+            <field name="arch" type="xml">
+                <tree string="FAQ">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- SEARCH VIEW OF FAQ -->
+        <record model='ir.ui.view' id='faq_faq_search'>
+            <field name="name">faq.faq.search</field>
+            <field name="model">faq.faq</field>
+            <field name="arch" type="xml">
+                <search string="FAQ" >
+                    <field name="name"/>
+                    <field name="solution"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- ACTION FOR FAQ -->
+        <record model='ir.actions.act_window' id='action_faq_faq'>
+            <field name="name">FAQ</field>
+            <field name="res_model">faq.faq</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new FAQ.
+              </p>
+            </field>
+        </record>
+        
+        <menuitem action="action_faq_faq" id="menu_faq_faq" name="FAQ" parent="menu_faq" sequence="1"/>
+
+</odoo>
