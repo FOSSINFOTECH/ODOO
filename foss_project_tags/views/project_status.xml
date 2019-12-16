@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<odoo>
+    <template id="assets_frontend" name="project_task_state assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/foss_project_tags/static/description/css/project_task_state.css"/>	
+        </xpath>
+    </template>
+</odoo>
