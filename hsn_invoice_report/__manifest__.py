@@ -10,6 +10,8 @@
         This module adds a functionality for HSN based grouping of Products in Invoice.
     """,
 
+    'live_test_url': 'https://www.youtube.com/watch?v=weZo2SaYuRU',
+
     'license': 'AGPL-3',
 
     'author': "FOSS INFOTECH PVT LTD",

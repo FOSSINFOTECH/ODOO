@@ -7,6 +7,8 @@
 
     'summary': 'Assign and Unassign Followers',
 
+    'live_test_url': 'https://www.youtube.com/watch?v=WMW_AWSxp8I&t=56s',
+
     'author': 'FOSS INFOTECH PVT LTD',
 
     'license': 'AGPL-3',

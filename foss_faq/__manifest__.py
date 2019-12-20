@@ -5,6 +5,7 @@
     'version': '12.0.1.1',
     'summary': 'Create FAQs',
     'author': 'FOSS INFOTECH PVT LTD',
+    'live_test_url': 'https://www.youtube.com/watch?v=mO9EK9eMImg',
     'license': 'AGPL-3',
     'category': 'FAQ',
     'website': 'http://www.fossinfotech.com',

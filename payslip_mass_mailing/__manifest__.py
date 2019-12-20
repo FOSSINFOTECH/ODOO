@@ -4,6 +4,7 @@
     'name': 'Payslip Mass Mailing',
     'version': '12.0.0.0.0',
     'category': 'Human Resources',
+    'live_test_url': 'https://www.youtube.com/watch?v=HU6_HnHi5r8',
     'website': 'http://www.fossinfotech.com',
     'license': 'AGPL-3',
     'author': 'FOSS INFOTECH PVT LTD',

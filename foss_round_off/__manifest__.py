@@ -10,6 +10,8 @@
 
     'description': """This module is to round the invoice (decimal amount) to the nearest value for Customer Invoice and Vendor Bills""",
 
+    'live_test_url': 'https://www.youtube.com/watch?v=3e3-4BL2pEI',
+
     'license': 'AGPL-3',
 
     'author': "FOSS INFOTECH PVT LTD",
