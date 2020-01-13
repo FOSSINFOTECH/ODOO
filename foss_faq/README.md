@@ -1,9 +1,8 @@
-
 Author : FOSS INFOTECH PVT LTD
 
 Module : foss\_faq
 
-Version : 12.0
+Version : 13.0
 
 <h2>Frequently Asked Questions</h2>
 

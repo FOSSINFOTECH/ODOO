@@ -3,8 +3,6 @@ Installation
 
 - Backup your Odoo
 
-- After purchase you will receive a receipt with a link to download the module
-
 - Extract the module and upload (place it) into your "custom modules" folder
 
 - Restart the Odoo server
@@ -22,6 +20,6 @@ Installation
 Compatibility
 ------------
 
-- Fully Supports Odoo Version 12.0 Community
+- Fully Supports Odoo Version 13.0 Community & Enterprise
 
 - Module tested on clean Odoo installation, no errors detected

@@ -20,7 +20,7 @@
         <field name="name">faq.tag.tree</field>
         <field name="model">faq.tag</field>
         <field name="arch" type="xml">
-            <tree string="FAQ Tag" editable="bottom">
+            <tree editable="bottom">
                 <field name="name" />
             </tree>
         </field>
@@ -72,7 +72,6 @@
     <record model='ir.actions.act_window' id='action_faq_tag'>
         <field name="name">FAQ Tag</field>
         <field name="res_model">faq.tag</field>
-        <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
     </record>
 
