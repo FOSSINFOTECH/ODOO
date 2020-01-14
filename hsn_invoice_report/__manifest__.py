@@ -14,6 +14,8 @@
 
     'author': "FOSS INFOTECH PVT LTD",
 
+    'live_test_url': 'https://www.youtube.com/watch?v=uMRBBx0iBw8',
+
     'website': "http://www.fossinfotech.com",
 
     'category': 'Accounting',
