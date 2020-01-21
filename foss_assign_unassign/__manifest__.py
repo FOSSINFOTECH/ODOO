@@ -13,6 +13,8 @@
 
     'sequence': 10,
 
+    'live_test_url': 'https://www.youtube.com/watch?v=USdanmoOeaI',
+
     'website': 'http://www.fossinfotech.com',
 
     'description': """
