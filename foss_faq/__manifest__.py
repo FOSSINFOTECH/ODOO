@@ -17,6 +17,7 @@
         'security/faq_security.xml',
         'security/ir.model.access.csv',
         'views/faq_view.xml',
+        'views/faq_category_view.xml',
     ],
     'images': [
         'static/description/banner.png',
